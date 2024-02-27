@@ -1,9 +1,8 @@
 
 import 'dotenv/config'
 import express, { Application } from 'express'
-import { createReg } from './controllers/registerController';
-import { createLogin } from './controllers/loginController';
 import { deleteUser, getUser, updateUser } from './controllers/userController';
+import { createLogin, createReg } from './controllers/authController';
 
 
 
