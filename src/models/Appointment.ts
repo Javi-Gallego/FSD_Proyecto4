@@ -26,9 +26,15 @@ export class Appointment extends BaseEntity{
     @Column({ name: "updated_at", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP"})
     updatedAt!: Date
 
-   @ManyToOne(() => User, user => user.appointments)
-    user!: User 
+    @ManyToOne(() => User, user => user.appointments)
+    @JoinColumn({name: "user_id"})
+    user!: User
+
+    @ManyToOne(() => User, artist => artist.artappointments)
+    @JoinColumn({name: "artist_id"})
+    artist!: User
 
     @ManyToOne(() => Service, service => service.appointments)
+    @JoinColumn({name: "service_id"})
     service!: Service
 }

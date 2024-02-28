@@ -1,8 +1,8 @@
 
 import 'dotenv/config'
 import express, { Application } from 'express'
-import { deleteUser, getUser, updateUser } from './controllers/userController';
-import { createLogin, createReg } from './controllers/authController';
+import { deleteUser, getUserByEmail, getUsers, profile, updateUser } from './controllers/userController';
+import { login, register } from './controllers/authController';
 
 
 
@@ -20,12 +20,13 @@ app.get("/healthy", (req, res) => {
 //Endpoints
 
 //Authentications
-app.post("/api/auth/register", createReg)
-app.post("/api/auth/login", createLogin)
+app.post("/api/auth/register", register)
+app.post("/api/auth/login", login)
 
 //Users
-app.get("/api/users", getUser)
-app.get("/api/users/profile", getUser)
+app.get("/api/users", getUsers)
+app.get("/api/users/profile", profile)
+app.get("/api/users/:email", getUserByEmail)
 app.put("/api/users/profile", updateUser)
 app.delete("/api/users/:id", deleteUser)
 app.put("/api/users/:id/role", updateUser)

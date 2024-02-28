@@ -37,13 +37,12 @@ export class Users1708985068309 implements MigrationInterface {
                         name: "password_hash",
                         type: "varchar",
                         length: "255",
-                        isUnique: true,
                         isNullable: false
                     },
                     {
                         name: "role_id",
-                        type: "int  ",
-                        isNullable: false
+                        type: "int",
+                        default: 2,
                     },
                     {
                         name: "created_at",
