@@ -11,6 +11,7 @@ import { User } from '../models/User'
 import { Appointment } from '../models/Appointment'
 import { Service } from '../models/Service'
 import { Catalog1709229074383 } from './migrations/1709229074383-catalog'
+import { Catalog } from '../models/Catalog'
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -19,7 +20,7 @@ export const AppDataSource = new DataSource({
     username: process.env.DB_USER || "root",
     password: process.env.DB_PASS || "",
     database: process.env.DB_NAME || "test",
-    entities: [Role, User, Service, Appointment],
+    entities: [Role, User, Service, Appointment, Catalog],
     migrations: [Role1708984735981, Users1708985068309, Services1708985956637, Appointments1708990376954, Catalog1709229074383],
     synchronize: false,
     logging: false,

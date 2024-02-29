@@ -1,6 +1,7 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
 import { User } from "./User"
 import { Service } from "./Service"
+import { Catalog } from "./Catalog"
 
 @Entity("appointments")
 export class Appointment extends BaseEntity{
@@ -37,4 +38,8 @@ export class Appointment extends BaseEntity{
     @ManyToOne(() => Service, service => service.appointments)
     @JoinColumn({name: "service_id"})
     service!: Service
+
+    @ManyToOne(() => Catalog, catalog => catalog.appointments)
+    @JoinColumn({name: "catalog_id"})
+    catalog!: Catalog
 }

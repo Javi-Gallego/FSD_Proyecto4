@@ -3,24 +3,51 @@ import { User } from "../models/User"
 
 export const getUsers = async (req: Request, res: Response) => {
     try {
-        //recuperar la info a través del body
-    const users = await User.find({
-        select: {
-            id: true,
-            firstName: true,
-            lastName: true,
-            email: true,
-            roleId: true
-        }
-    })
+        // const email = req.query.email
 
-    return res.status(200).json(
-        {
+        // if (email) {
+
+        //     const user = await User.findOne({
+        //         where: { email: email },
+        //         relations: { role: true },
+        //         select: { 
+        //             id: true, 
+        //             firstName: true,
+        //             lastName: true, 
+        //             email: true, 
+        //             role: { name: true }}
+        //     })
+
+        //     if (!user) {
+        //         return res.status(404).json({
+        //             success: false,
+        //             message: "User not found"
+        //         })
+        //     }
+
+        //     return res.status(200).json({
+        //         success: true,
+        //         message: "User retrieved successfully",
+        //         data: user
+        //     })
+        // }
+
+        const users = await User.find({
+            relations: { role: true },
+            select: { 
+                id: true, 
+                firstName: true,
+                lastName: true, 
+                email: true, 
+                role: { name: true }}
+        })
+
+        return res.status(200).json({
             success: true,
             message: "Users retrieved successfully",
             data: users
-        }
-    )
+        })
+
     } catch (error) {
         return res.status(500).json({
             success: false,
@@ -84,44 +111,6 @@ export const profile = async (req: Request, res: Response) => {
             error: error
         })
     }
-}
-
-export const createUser = async (req: Request, res: Response) => {
-
-    try {
-        //recuperar la info a través del body
-        console.log(req.body)
-        
-        const { name } = req.body
-        
-        if(name.length > 50) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "User name must be under 50 characters long",
-                }
-            )
-        }
-    
-        /*const newRole = await Role.create({
-            name: name
-        }).save()*/
-    
-        res.status(201).json(
-            {
-                success: true,
-                message: "User created successfully",
-                //data: newRole
-            }
-        )
-        
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "Can't create user",
-            error: error
-        })
-    }  
 }
 
 export const updateUserById = async (req: Request, res: Response) => {
@@ -199,9 +188,9 @@ export const updateUserRole = async (req: Request, res: Response) => {
     }   
 }
 
-export const deleteUserById = async (req: Request, res: Response) => {
+export const deleteUser = async (req: Request, res: Response) => {
     try {
-        const userId = req.params.id
+        const userId = req.body.id
 
         const user = await User.findOneBy({
             id: parseInt(userId)

@@ -48,7 +48,7 @@ export const createServices = async (req: Request, res: Response) => {
 
 export const updateService = async (req: Request, res: Response) => {
     try {
-        const serviceId = req.params.id
+        const serviceId = req.body.id
 
         const service = await Service.findOneBy({
             id: parseInt(serviceId)
@@ -83,7 +83,7 @@ export const updateService = async (req: Request, res: Response) => {
 
 export const deleteService = async (req: Request, res: Response) => {
     try {
-        const serviceId = req.params.id
+        const serviceId = req.body.id
 
         const service = await Service.findOneBy({
             id: parseInt(serviceId)
