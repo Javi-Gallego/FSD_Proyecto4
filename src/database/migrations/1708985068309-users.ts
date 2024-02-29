@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
 export class Users1708985068309 implements MigrationInterface {
 
@@ -12,7 +12,7 @@ export class Users1708985068309 implements MigrationInterface {
                         type: "int",
                         isPrimary: true,
                         isGenerated: true,
-                        generationStrategy: "increment",
+                        generationStrategy: "increment"
                     },
                     {
                         name: "first_name",
@@ -42,12 +42,12 @@ export class Users1708985068309 implements MigrationInterface {
                     {
                         name: "role_id",
                         type: "int",
-                        default: 2,
+                        default: 2
                     },
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "now()",
+                        default: "now()"
                     },
                     {
                         name: "updated_at",
@@ -61,7 +61,7 @@ export class Users1708985068309 implements MigrationInterface {
                         columnNames: ["role_id"],
                         referencedTableName: "role",
                         referencedColumnNames: ["id"],
-                        onDelete: "CASCADE",
+                        onDelete: "CASCADE"
                     }, 
                 ],
             }),
@@ -70,7 +70,6 @@ export class Users1708985068309 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("users");
+        await queryRunner.dropTable("users")
     }
-
 }

@@ -2,6 +2,7 @@
 import { Request, Response } from "express"
 import { User } from "../models/User"
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 
 export const register = async (req: Request, res: Response) => {
     
@@ -12,21 +13,17 @@ export const register = async (req: Request, res: Response) => {
         //validaciones de los datos
 
         if(first_name.length > 255 || last_name.length > 255) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "First name and last name must have less than 255 characters",
-                }
-            )
+            return res.status(400).json({
+                success: false,
+                message: "First name and last name must have less than 255 characters",
+            })
         }
 
         if(!first_name || !last_name) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "First name and last name must have a value",
-                }
-            )
+            return res.status(400).json({
+                success: false,
+                message: "First name and last name must have a value",
+            })
         }
 
         //validación password
@@ -37,20 +34,30 @@ export const register = async (req: Request, res: Response) => {
             })
         }
 
-        //validación email
+        //validación email con regex
         const validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+
         if (!validEmail.test(email) ){
-            return res.status(400).json(
-            {
-            success: false,
-            message: "format email invalid"
-            }
-            )
+            return res.status(400).json({
+                success: false,
+                message: "format email invalid"
+            })
         }
 
-        //Tratamos la data si fuera necesario
+        //Si el mail tiene un formato válido, buscamos si ya existe en la base de datos
+        const isUser = await User.findOne({
+            where: { email: email }
+        }) 
+
+        if(isUser){
+            return res.status(400).json({
+                success: false,
+                message: "Email already exists"
+            }) 
+        }
+
+        //Tratamos el password para almacenarlo encriptado
         const passwordEncrypted = bcrypt.hashSync(password, 8)
-        console.log(passwordEncrypted)
 
         //Guardamos el usuario en la base de datos
         const newUser = await User.create({
@@ -63,13 +70,11 @@ export const register = async (req: Request, res: Response) => {
             //dos opciones de meter el role, dependiendo de si usamos @Column o @JoinColumn
         }).save()
     
-        return res.status(201).json(
-            {
-                success: true,
-                message: "User registered successfully",
-                data: newUser
-            }
-        )
+        return res.status(201).json({
+            success: true,
+            message: "User registered successfully",
+            data: newUser
+        })
         
     } catch (error) {
         return res.status(500).json({
@@ -82,24 +87,28 @@ export const register = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
     try {
-        //recuperar la info a través del body
-        console.log(req.body)
 
-        const { email, password, id } = req.body
-    
+        const { email, password } = req.body
+
         //buscamos el usuario a través del email que es único
-        const user = await User.findOneBy({
-            email: email
-        })
-    
+        //Buscar trayendo las relaciones (foreign keys) y seleccionando los campos
+        //Las relaciones las importa como un objeto con todos los campos de la otra tabla
+        const user = await User.findOne({
+            where: { email: email },
+            relations: { role: true },
+            select: { 
+                id: true, 
+                passwordHash: true, 
+                email: true, 
+                role: { name: true }}
+        })  
+
         //Si no encontramos ningún usuario con ese email devolvemos error
         if (!user) {
-            return res.status(404).json(
-                {
-                    success: false,
-                    message: "Email not found",
-                }
-            )
+            return res.status(404).json({
+                success: false,
+                message: "Email not found",
+            })
         }
 
         //validación password
@@ -111,23 +120,33 @@ export const login = async (req: Request, res: Response) => {
         }
 
         //con la función de comparación de bcrypt comparamos la contraseña que nos llega con la que tenemos en la base de datos
-        await bcrypt.compare(password, user.passwordHash, (err, result) => {
-            if (!result){
-                return res.status(400).json(
-                    {
-                        success: false,
-                        message: "Password incorrect",
-                    }
-                )
-            } else {
-                return res.status(200).json(
-                    {
-                        success: true,
-                        message: "User logged successfully",
-                    }
-                )
+        const isPassValid =  bcrypt.compareSync(password, user.passwordHash) 
+
+        if (!isPassValid){
+            return res.status(400).json({
+                success: false,
+                message: "Incorrect password"
+            })
+        } 
+
+        //generamos el token una vez confirmamos que es correcta la contraseña
+        const token = jwt.sign(
+            {
+                userId: user.id,
+                roleName: user.role.name
+            },
+            process.env.JWT_SECRET as string,
+            {
+                expiresIn: "2h" 
             }
+        )
+
+        return res.status(200).json({
+            success: true,
+            message: "User logged successfully",
+            data: token
         })
+
         
     } catch (error) {
         return res.status(500).json({
