@@ -2,7 +2,7 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { Appointment } from "./Appointment"
 
-@Entity("catalog")
+@Entity("catalogs")
 export class Catalog extends BaseEntity{
     @PrimaryGeneratedColumn()
     id!: number

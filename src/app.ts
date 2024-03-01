@@ -8,6 +8,7 @@ import { auth } from './middlewares/auth';
 import { isSuperAdmin } from './middlewares/isSuperAdmin';
 import { get } from 'http';
 import { createCatalog, getCatalog } from './controllers/catalogController';
+import { createAppointment } from './controllers/appointmentController';
 
 
 
@@ -37,7 +38,7 @@ app.delete("/api/users", auth, isSuperAdmin, deleteUser) //done
 app.put("/api/users/:id/role", updateUserRole)
 
 //Appointments
-app.post("/api/appointments",)
+app.post("/api/appointments", createAppointment)
 app.put("/api/appointments",)
 app.get("/api/appointments/:id",)
 app.get("/api/appointments",)

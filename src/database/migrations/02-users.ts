@@ -1,11 +1,11 @@
-import { MigrationInterface, QueryRunner, Table, TableUnique } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
-export class Appointments1708990376954 implements MigrationInterface {
+export class Users1708985068309 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "appointments",
+                name: "users",
                 columns: [
                     {
                         name: "id",
@@ -15,24 +15,34 @@ export class Appointments1708990376954 implements MigrationInterface {
                         generationStrategy: "increment"
                     },
                     {
-                        name: "user_id",
-                        type: "int",
+                        name: "first_name",
+                        type: "varchar",
+                        length: "255",
                         isNullable: false
                     },
                     {
-                        name: "service_id",
-                        type: "int",
+                        name: "last_name",
+                        type: "varchar",
+                        length: "255",
                         isNullable: false
                     },
                     {
-                        name: "artist_id",
-                        type: "int",
+                        name: "email",
+                        type: "varchar",
+                        length: "255",
+                        isUnique: true,
                         isNullable: false
                     },
                     {
-                        name: "date",
-                        type: "timestamp",
+                        name: "password_hash",
+                        type: "varchar",
+                        length: "255",
                         isNullable: false
+                    },
+                    {
+                        name: "role_id",
+                        type: "int",
+                        default: 3
                     },
                     {
                         name: "created_at",
@@ -48,29 +58,11 @@ export class Appointments1708990376954 implements MigrationInterface {
                 ],
                 foreignKeys: [
                     {
-                        columnNames: ["user_id"],
-                        referencedTableName: "users",
-                        referencedColumnNames: ["id"],
-                        onDelete: "CASCADE"
-                    },
-                    {
-                        columnNames: ["service_id"],
-                        referencedTableName: "services",
-                        referencedColumnNames: ["id"],
-                        onDelete: "CASCADE"
-                    },
-                    {
-                        columnNames: ["artist_id"],
-                        referencedTableName: "users",
+                        columnNames: ["role_id"],
+                        referencedTableName: "roles",
                         referencedColumnNames: ["id"],
                         onDelete: "CASCADE"
                     }, 
-                ],
-                uniques: [
-                    new TableUnique({
-                        name: "user_service_date_unique",
-                        columnNames: ["user_id", "service_id", "date"]
-                    }),
                 ],
             }),
             true
@@ -78,7 +70,6 @@ export class Appointments1708990376954 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("appointments");
+        await queryRunner.dropTable("users")
     }
-
 }

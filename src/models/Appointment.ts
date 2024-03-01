@@ -18,6 +18,9 @@ export class Appointment extends BaseEntity{
     @Column({ name: "artist_id"})
     artistId!: number
 
+    @Column({ name: "catalog_id"})
+    catalogId!: number
+
     @Column({ name: "date"})
     date!: Date
 
