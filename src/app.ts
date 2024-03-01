@@ -1,13 +1,12 @@
 
 import 'dotenv/config'
 import express, { Application } from 'express'
-import { deleteUser, getUserByEmail, getUsers, profile, updateUserById, updateUserRole } from './controllers/userController';
+import { deleteUser, getUsers, profile, updateProfile, updateUserRole } from './controllers/userController';
 import { login, register } from './controllers/authController';
 import { createServices, deleteService, getServices, updateService } from './controllers/serviceController';
 import { auth } from './middlewares/auth';
 import { isSuperAdmin } from './middlewares/isSuperAdmin';
-import { get } from 'http';
-import { createCatalog, getCatalog } from './controllers/catalogController';
+import { createCatalog, getCatalog, updateCatalog } from './controllers/catalogController';
 import { createAppointment } from './controllers/appointmentController';
 
 
@@ -31,17 +30,10 @@ app.post("/api/auth/login", login) //done
 
 //Users
 app.get("/api/users", auth, isSuperAdmin, getUsers) //done
-app.get("/api/users/profile", profile)
-app.get("/api/users/:email", getUserByEmail)
-app.put("/api/users/profile", updateUserById)
+app.get("/api/users/profile", auth, profile)
+app.put("/api/users/profile", auth, updateProfile)
 app.delete("/api/users", auth, isSuperAdmin, deleteUser) //done
-app.put("/api/users/:id/role", updateUserRole)
-
-//Appointments
-app.post("/api/appointments", createAppointment)
-app.put("/api/appointments",)
-app.get("/api/appointments/:id",)
-app.get("/api/appointments",)
+app.put("/api/users/:id/role", auth, isSuperAdmin, updateUserRole) //done
 
 //Services
 app.get("/api/services", getServices) // done
@@ -52,3 +44,10 @@ app.delete("/api/services", auth, isSuperAdmin, deleteService) // done
 //Catalog
 app.get("/api/catalog", getCatalog) // done
 app.post("/api/catalog", auth, isSuperAdmin, createCatalog) //done
+app.put("/api/catalog", updateCatalog)
+
+//Appointments
+app.post("/api/appointments", createAppointment)
+app.put("/api/appointments",)
+app.get("/api/appointments/:id",)
+app.get("/api/appointments",)

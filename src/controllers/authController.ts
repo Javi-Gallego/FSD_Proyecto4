@@ -65,8 +65,8 @@ export const register = async (req: Request, res: Response) => {
             lastName: last_name,
             email: email,
             passwordHash: passwordEncrypted,
-            role: { id: 2 }
-            //roleId: 2 
+            role: { id: 3 }
+            //roleId: 3 
             //dos opciones de meter el role, dependiendo de si usamos @Column o @JoinColumn
         }).save()
     
@@ -121,7 +121,7 @@ export const login = async (req: Request, res: Response) => {
 
         //con la función de comparación de bcrypt comparamos la contraseña que nos llega con la que tenemos en la base de datos
         const isPassValid =  bcrypt.compareSync(password, user.passwordHash) 
-
+        console.log(isPassValid)
         if (!isPassValid){
             return res.status(400).json({
                 success: false,
