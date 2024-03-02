@@ -30,8 +30,8 @@ app.post("/api/auth/login", login) //done
 
 //Users
 app.get("/api/users", auth, isSuperAdmin, getUsers) //done
-app.get("/api/users/profile", auth, profile)
-app.put("/api/users/profile", auth, updateProfile)
+app.get("/api/users/profile", auth, profile) //done
+app.put("/api/users/profile", auth, updateProfile) //done
 app.delete("/api/users", auth, isSuperAdmin, deleteUser) //done
 app.put("/api/users/:id/role", auth, isSuperAdmin, updateUserRole) //done
 

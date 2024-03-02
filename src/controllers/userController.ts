@@ -140,27 +140,31 @@ export const updateProfile = async (req: Request, res: Response) => {
         //para poder cambiar la contraseña se necesita mandar la contraseña actual además de la nueva
         //se comprueba que la contraseña actual sea correcta
         if(req.body.currentPass & req.body.newPass){
-            if(bcrypt.compareSync(req.body.currentPass, user.passwordHash)){
-                const newPassHash = bcrypt.hashSync(req.body.newPass, 8)
-                newData.passwordHash = newPassHash
+            if(!bcrypt.compareSync(req.body.currentPass, user.passwordHash)){
+                return res.status(400).json({
+                    success: false,
+                    message: "Current password is incorrect"
+                })
             }
+            const newPassHash = bcrypt.hashSync(req.body.newPass, 8)
+            newData.passwordHash = newPassHash
         }
         
-
+        //Se actualiza el usuario con los nuevos datos almacenados en la interfaz newData
         const userUpdated = await User.update({
             id: userId
             },
             newData)
 
-        return res.status(200).json({
+        return res.status(201).json({
             success: true,
-            message: "User retrieved successfully",
+            message: "User updated successfully",
             data: userUpdated
         })
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "User can't be retrieved",
+            message: "User can't be updated",
             error: error
         })
     }   
