@@ -27,10 +27,12 @@ export class Appointments1709312428019 implements MigrationInterface {
                     {
                         name: "artist_id",
                         type: "int",
+                        default: null
                     },
                     {
                         name: "catalog_id",
                         type: "int",
+                        default: null
                     },
                     {
                         name: "date",

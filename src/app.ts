@@ -49,5 +49,5 @@ app.put("/api/catalog", updateCatalog)
 //Appointments
 app.post("/api/appointments", createAppointment)
 app.put("/api/appointments",)
-app.get("/api/appointments/:id",)
 app.get("/api/appointments",)
+app.get("/api/appointments/:id",)
