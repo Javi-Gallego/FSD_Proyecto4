@@ -22,7 +22,7 @@ const roleSeedDatabase = async() => {
         await roleUser.save()
 
         const roleTatooArtist = new Role()
-        roleTatooArtist.name = "tatoo_artist"
+        roleTatooArtist.name = "tattoo_artist"
         await roleTatooArtist.save()
 
         console.log("--------------------------------------------------")

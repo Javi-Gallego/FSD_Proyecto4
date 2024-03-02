@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/server.ts",
-    "seed": "ts-node ./src/database/seeders/seeders.ts",
+    "seed1": "ts-node ./src/database/seeders/seeder-roles.ts",
+    "seed2": "ts-node ./src/database/seeders/seeder-users.ts",
+    "seed3": "ts-node ./src/database/seeders/seeder-services.ts",
+    "seed4": "ts-node ./src/database/seeders/seeder-catalogs.ts",
+    "seed5": "ts-node ./src/database/seeders/seeder-appointments.ts",
     "run-migrations": "typeorm-ts-node-commonjs migration:run -d ./src/database/db.ts",
     "revert-migrations": "typeorm-ts-node-commonjs migration:revert -d ./src/database/db.ts"
   },
@@ -14,18 +18,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcrypt": "5.1.1",
     "dotenv": "16.4.5",
     "express": "4.18.2",
-    "jsonwebtoken": "^9.0.2",
+    "jsonwebtoken": "9.0.2",
     "mysql2": "3.9.2",
     "reflect-metadata": "0.2.1",
     "typeorm": "0.3.20"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.2",
+    "@types/bcrypt": "5.0.2",
     "@types/express": "4.17.21",
-    "@types/jsonwebtoken": "^9.0.6",
+    "@types/jsonwebtoken": "9.0.6",
     "@types/node": "20.11.20",
     "nodemon": "3.1.0",
     "ts-node": "10.9.2",
