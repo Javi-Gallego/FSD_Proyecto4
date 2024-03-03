@@ -15,10 +15,10 @@ export class Appointment extends BaseEntity{
     @Column({ name: "service_id"})
     serviceId!: number
 
-    @Column({ name: "artist_id"})
+    @Column({ name: "artist_id", default: () => null})
     artistId!: number
 
-    @Column({ name: "catalog_id"})
+    @Column({ name: "catalog_id", default: () => null})
     catalogId!: number
 
     @Column({ name: "date"})

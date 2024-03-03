@@ -6,8 +6,8 @@ import { login, register } from './controllers/authController';
 import { createServices, deleteService, getServices, updateService } from './controllers/serviceController';
 import { auth } from './middlewares/auth';
 import { isSuperAdmin } from './middlewares/isSuperAdmin';
-import { createCatalog, getCatalog, updateCatalog } from './controllers/catalogController';
-import { createAppointment } from './controllers/appointmentController';
+import { createCatalog, deleteCatalog, getCatalog, updateCatalog } from './controllers/catalogController';
+import { createAppointment, getAppointments, updateAppointments } from './controllers/appointmentController';
 
 
 
@@ -38,16 +38,17 @@ app.put("/api/users/:id/role", auth, isSuperAdmin, updateUserRole) //done
 //Services
 app.get("/api/services", getServices) // done
 app.post("/api/services", auth, isSuperAdmin, createServices) // done
-app.put("/api/services", auth, isSuperAdmin, updateService) // done
+app.put("/api/services/:id", auth, isSuperAdmin, updateService) // done
 app.delete("/api/services", auth, isSuperAdmin, deleteService) // done
 
 //Catalog
 app.get("/api/catalog", getCatalog) // done
 app.post("/api/catalog", auth, isSuperAdmin, createCatalog) //done
-app.put("/api/catalog", updateCatalog)
+app.put("/api/catalog/:id", auth, isSuperAdmin, updateCatalog) //done
+app.delete("/api/catalog/:id", auth, isSuperAdmin, deleteCatalog) //done
 
 //Appointments
-app.post("/api/appointments", createAppointment)
-app.put("/api/appointments",)
-app.get("/api/appointments",)
-app.get("/api/appointments/:id",)
+app.post("/api/appointments", auth, createAppointment) //done
+app.put("/api/appointments/:id", auth, updateAppointments) //done
+app.get("/api/appointments", auth, getAppointments) //done
+app.get("/api/appointments/:id", auth, getAppointments) //done

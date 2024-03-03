@@ -79,6 +79,108 @@ const appointmentSeedDatabase = async () => {
         Appointment10.date = new Date("2024-03-13 10:00:00")
         await Appointment10.save()
 
+        const Appointment11 = new Appointment()
+        Appointment11.userId = 4
+        Appointment11.serviceId = 2
+        Appointment11.artistId = 12
+        Appointment11.date = new Date("2024-03-07 10:00:00")
+        Appointment11.catalogId = 10
+        await Appointment11.save()
+
+        const Appointment12 = new Appointment()
+        Appointment12.userId = 5
+        Appointment12.serviceId = 2
+        Appointment12.artistId = 12
+        Appointment12.date = new Date("2024-03-07 12:00:00")
+        Appointment12.catalogId = 4
+        await Appointment12.save()
+
+        const Appointment13 = new Appointment()
+        Appointment13.userId = 6
+        Appointment13.serviceId = 2
+        Appointment13.artistId = 12
+        Appointment13.date = new Date("2024-03-07 14:00:00")
+        Appointment13.catalogId = 3
+        await Appointment13.save()
+
+        const Appointment14 = new Appointment()
+        Appointment14.userId = 7
+        Appointment14.serviceId = 2
+        Appointment14.artistId = 12
+        Appointment14.date = new Date("2024-03-07 16:00:00")
+        Appointment14.catalogId = 2
+        await Appointment14.save()
+
+        const Appointment15 = new Appointment()
+        Appointment15.userId = 8
+        Appointment15.serviceId = 2 
+        Appointment15.artistId = 12
+        Appointment15.date = new Date("2024-03-07 18:00:00")
+        Appointment15.catalogId = 1
+        await Appointment15.save()
+
+        const Appointment16 = new Appointment()
+        Appointment16.userId = 9
+        Appointment16.serviceId = 1
+        Appointment16.artistId = 11
+        Appointment16.date = new Date("2024-03-08 10:00:00")
+        await Appointment16.save()
+
+        const Appointment17 = new Appointment()
+        Appointment17.userId = 4
+        Appointment17.serviceId = 3
+        Appointment17.artistId = 11
+        Appointment17.date = new Date("2024-03-08 12:00:00")
+        await Appointment17.save()
+
+        const Appointment18 = new Appointment()
+        Appointment18.userId = 8
+        Appointment18.serviceId = 4
+        Appointment18.date = new Date("2024-03-08 14:00:00")
+        await Appointment18.save()
+
+        const Appointment19 = new Appointment()
+        Appointment19.userId = 8
+        Appointment19.serviceId = 1
+        Appointment19.artistId = 11
+        Appointment19.date = new Date("2024-03-08 10:00:00")
+        await Appointment19.save()
+
+        const Appointment20 = new Appointment()
+        Appointment20.userId = 5
+        Appointment20.serviceId = 3
+        Appointment20.artistId = 12
+        Appointment20.date = new Date("2024-03-09 10:00:00")
+        await Appointment20.save()
+
+        const Appointment21 = new Appointment()
+        Appointment21.userId = 5
+        Appointment21.serviceId = 3
+        Appointment21.artistId = 11
+        Appointment21.date = new Date("2024-03-01 10:00:00")
+        await Appointment21.save()
+
+        const Appointment22 = new Appointment()
+        Appointment22.userId = 6
+        Appointment22.serviceId = 3
+        Appointment22.artistId = 12
+        Appointment22.date = new Date("2024-03-01 10:00:00")
+        await Appointment22.save()
+
+        const Appointment23 = new Appointment()
+        Appointment23.userId = 7
+        Appointment23.serviceId = 3
+        Appointment23.artistId = 11
+        Appointment23.date = new Date("2024-03-01 12:00:00")
+        await Appointment23.save()
+
+        const Appointment24 = new Appointment()
+        Appointment24.userId = 8
+        Appointment24.serviceId = 3
+        Appointment24.artistId = 12
+        Appointment24.date = new Date("2024-03-01 12:00:00")
+        await Appointment24.save()
+
         console.log("--------------------------------------------------")
         console.log("-- Los appointments se han creado correctamente --")
         console.log("--------------------------------------------------")

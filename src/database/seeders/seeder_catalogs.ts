@@ -6,7 +6,7 @@ const catalogSeedDatabase = async () => {
         await AppDataSource.initialize()
         
         const Catalog1 = new Catalog()
-        Catalog1.tattooName = "Flames"
+        Catalog1.tattooName = "No tattoo selected"
         Catalog1.urlImage = "./img/flames.jpg"
         await Catalog1.save()
 
@@ -54,6 +54,11 @@ const catalogSeedDatabase = async () => {
         Catalog10.tattooName = "Tribal"
         Catalog10.urlImage = "./img/tribal.jpg"
         await Catalog10.save()
+
+        const Catalog11 = new Catalog()
+        Catalog11.tattooName = "Flames"
+        Catalog11.urlImage = "./img/flames.jpg"
+        await Catalog11.save()
 
         console.log("--------------------------------------------------")
         console.log("---- Los tattoos se han creado correctamente -----")

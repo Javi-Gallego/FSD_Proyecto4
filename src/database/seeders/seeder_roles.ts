@@ -21,6 +21,10 @@ const roleSeedDatabase = async() => {
         roleTatooArtist.name = "tattoo_artist"
         await roleTatooArtist.save()
 
+        const worker = new Role()
+        worker.name = "worker"
+        await worker.save()
+
         console.log("--------------------------------------------------")
         console.log("----- Los roles se han creado correctamente ------")
         console.log("--------------------------------------------------")

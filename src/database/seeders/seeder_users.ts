@@ -18,13 +18,13 @@ const userSeedDatabase = async() => {
         User2.lastName = "Admin"
         User2.email = "admin@gmail.com"
         User2.passwordHash = "$2b$08$k2z5SGN9d2CiC.Irg17mseC9TS4hDGgDJHjW8mVISfq42v9A47FIe"
-        User1.roleId = 2
+        User2.roleId = 2
         await User2.save()
         
         const User3 = new User()
-        User3.firstName = "User"
-        User3.lastName = "User"
-        User3.email = "user@gmail.com"
+        User3.firstName = "Worker"
+        User3.lastName = "Undefined"
+        User3.email = "worker@gmail.com"
         User3.passwordHash = "$2b$08$k2z5SGN9d2CiC.Irg17mseC9TS4hDGgDJHjW8mVISfq42v9A47FIe"
         await User3.save()
 
@@ -82,7 +82,7 @@ const userSeedDatabase = async() => {
         User11.lastName = "García"
         User11.email = "pedro@gmail.com"
         User11.passwordHash = "$2b$08$k2z5SGN9d2CiC.Irg17mseC9TS4hDGgDJHjW8mVISfq42v9A47FIe"
-        User1.roleId = 4
+        User11.roleId = 4
         await User11.save()
 
         const User12 = new User()
@@ -90,7 +90,7 @@ const userSeedDatabase = async() => {
         User12.lastName = "Ferrer"
         User12.email = "jose@gmail.com"
         User12.passwordHash = "$2b$08$k2z5SGN9d2CiC.Irg17mseC9TS4hDGgDJHjW8mVISfq42v9A47FIe"
-        User1.roleId = 4
+        User12.roleId = 4
         await User12.save()
 
         console.log("--------------------------------------------------")

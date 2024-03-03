@@ -126,6 +126,15 @@ export const updateProfile = async (req: Request, res: Response) => {
                     message: "Email already exists"
                 })
             }
+            //validación email con regex
+            const validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+
+            if (!validEmail.test(req.body.email) ){
+                return res.status(400).json({
+                    success: false,
+                    message: "Email format invalid"
+                })
+            }
             newData.email = req.body.email
         }
         
@@ -144,6 +153,13 @@ export const updateProfile = async (req: Request, res: Response) => {
                 return res.status(400).json({
                     success: false,
                     message: "Current password is incorrect"
+                })
+            }
+            //validación password
+            if (req.body.newPass.length < 6 || req.body.newPass.length > 10) {
+                return res.status(400).json({
+                    success: false,
+                    message: "New password must be between 6 and 10 characters"
                 })
             }
             const newPassHash = bcrypt.hashSync(req.body.newPass, 8)
