@@ -48,7 +48,8 @@ export const createServices = async (req: Request, res: Response) => {
 
 export const updateService = async (req: Request, res: Response) => {
     try {
-        const serviceId = req.body.id
+        const serviceId = req.params.id
+        
         interface FilterService {
             serviceName?: string
             description?: string
