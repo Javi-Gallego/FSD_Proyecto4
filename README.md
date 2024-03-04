@@ -92,7 +92,7 @@ In the HTTP directory there is a file named tattoo_shop_local.json, you can open
 
 For the endpoints examples below I will put the deployed url. In the tattoo_shop_local.json you have the url with your localhost.
 
-If you will use the API in local, you need a connection to a DB and put the credentials in the .env as needed. That credentials are the user, the password of that user, the port to connect to the DB and the name of the database.
+If you will use the API in local, you need a connection to a DB and put the credentials in the .env as needed. These credentials are the user, the password for that user, the port to connect to the DB and the name of the database.
 </details>
 
 <details>
@@ -103,10 +103,24 @@ In the HTTP directory theres a file named tattoo_shop_deployed.json, you can ope
 </details>
 
 <details>
+<summary>Authentication</summary>
+When an endpoint needs authentication you must put the token given to you when you login in the Bearer Token field in "Auth". In the login endpoint I will put the super_admin email and password.
+
+ !['imagen-auth'](./img/AuthenticationToken.JPG)
+
+ For a fast comprehension we will use icons to show what is needed to see the endopoints:
+ :angel: You must be logged as super_admin
+ :man: You must be logged
+ :earth_africa: This endpoint is global and can be viewew by everybody
+ :lock: You can enter this endpoint if you are authenticated. If you are a user you can only search, update or retrieve your own things, if you are a super_admin you can change or retrieve all the records of the database.
+</details>
+
+<details>
 <summary>Endpoints</summary>
 
+
 - AUTH
-    - REGISTER
+    - REGISTER :earth_africa:
 
             POST https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/auth/register
         body:
@@ -119,7 +133,7 @@ In the HTTP directory theres a file named tattoo_shop_deployed.json, you can ope
             }
         ```
 
-    - LOGIN
+    - LOGIN :earth_africa:
 
             POST https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/auth/login 
         body:
@@ -139,31 +153,116 @@ In the HTTP directory theres a file named tattoo_shop_deployed.json, you can ope
         ```
         This will be needed to obtain a token with user credentials
 - USERS
-    - GET USERS 
+    - PROFILE :lock:
 
-            GET http://localhost:3000/api/rutina
+            GET https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/users/profile
+
+        You must be logged in and you will see the profile of the user authenticated.
+
+    - UPDATE PROFILE :lock:
+
+            PUT https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/users?limit=10&page=1
             body:
         ``` js
             {
-                "first_name": "Alberto",
-                "last_name": "Martínez",
-                "email": "alberto@gmail.com",
-                "password": "123456"
+                { 
+                    "email": "email",
+                    "firstName": "firstname",
+                    "lastName": "lastname",
+                    "currentPassw": "pass",
+                    "newPass": "newpass"
+                }
             }
         ```
+        You must be logged because it will show the profile based on the id that is encrypted in the token. You can change your first name, last name, email or your password. If you want to change your password you must put your current password and the new password. It has same validations as in the registration.
+        Fields that want to be updated must be named in the body as in the example.
+    - GET USERS :angel:
 
-    - REGISTER
+            GET https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/users?limit=10&page=1
+            body:
+        ``` js
+            {
+                { 
+                    "email": "email",
+                    "name": "firstname",
+                    "lastname": "lastname",
+                    "role": "rolename"
+                }
+            }
+        ```
+        This endponint has the query params "limit" and "page". "limit" is the number of records shown each time. If there are more registres than the limit they are shown in next pages.
+        If you don't have any value in the body it will show every user in the database but you can put some entries that will work as filters, they are optional to put and the value must be exactly the same as in the database.
+        You must be logged as super_admin to retrieve users.
+    - UPDATE USER ROLE :angel:
 
-            POST https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/auth/register
+            PUT https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/users/13/role
         body:
         ``` js
             {
-                "first_name": "Alberto",
-                "last_name": "Martínez",
-                "email": "alberto@gmail.com",
-                "password": "123456"
+                "userRole": 3
             }
         ```
+        You must be logged as super_admin. In the url we pass the user id as a parameter and we should send the new role id of that user in the body. 
+        1 -> super_admin
+        2 -> admin
+        3 -> user
+        4 -> tattoo_artist
+        5 -> worker
+    - DELETE USER :angel:
+
+            DELETE https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/users
+        body:
+        ``` js
+            {
+                "id": 10
+            }
+        ```
+        You must be logged as super_admin. This time you must send the user id you want to delete in the body. 
+- SERVICES
+    - GET SERVICES :earth_africa:
+
+            GET https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/services
+
+        Everybody can see all the services provided by the shop. No authentication needed.
+    - CREATE SERVICES :angel: 
+
+            POST  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/services
+            body:
+        ``` js
+            {
+                { 
+                    "serviceName": "email",
+                    "description": "firstname"
+                }
+            }
+        ```
+        You must be logged as super_admin to creat a service. The body must have a "serviceName" and a "description" field.
+    - UPDATE SERVICES :angel: 
+
+            PUT  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/services
+            body:
+        ``` js
+            {
+                { 
+                    "name": "email",
+                    "description": "firstname"
+                }
+            }
+        ```
+        You must be logged as super_admin to creat a service. The body must have a "name" and a "description" field.
+    - DELETE SERVICE :angel: 
+
+            DELETE  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/services
+            body:
+        ``` js
+            {
+                { 
+                    "name": "email",
+                    "description": "firstname"
+                }
+            }
+        ```
+        You must be logged as super_admin to creat a service. The body must have a "name" and a "description" field.
 </details>
 
 ## Future features

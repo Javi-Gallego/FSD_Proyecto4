@@ -206,9 +206,6 @@ export const updateUserRole = async (req: Request, res: Response) => {
         const { userRole } = req.body
         const userId = req.params.id
 
-        console.log("userRole: " + userRole)
-        console.log("userId: " + userId)
-
         const user = await User.findOne({
             where: {id: parseInt(userId)}
         })

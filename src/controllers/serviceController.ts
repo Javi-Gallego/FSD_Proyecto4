@@ -49,7 +49,25 @@ export const createServices = async (req: Request, res: Response) => {
 export const updateService = async (req: Request, res: Response) => {
     try {
         const serviceId = req.body.id
+        interface FilterService {
+            serviceName?: string
+            description?: string
+        }
 
+        const FilterService: FilterService = {}
+
+        if(req.body.serviceName){
+            FilterService.serviceName = req.body.serviceName
+        }
+        if(req.body.description){
+            FilterService.description = req.body.description
+        }
+        if (!req.body.serviceName && !req.body.description) {
+            return res.status(400).json({
+                success: false,
+                message: "Service name or description are required to update the service"
+            })
+        }
         const service = await Service.findOneBy({
             id: parseInt(serviceId)
         })
@@ -64,7 +82,7 @@ export const updateService = async (req: Request, res: Response) => {
         const updatedservice = await Service.update({
             id: parseInt(serviceId)
             },
-            req.body
+            FilterService
         )
 
         return res.status(200).json({
