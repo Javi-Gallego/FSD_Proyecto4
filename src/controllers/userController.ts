@@ -4,6 +4,18 @@ import bcrypt from "bcrypt"
 
 export const getUsers = async (req: Request, res: Response) => {
     try {
+        //paginación de resultados
+        const limit = Number(req.query.limit) || 10
+        const page = Number(req.query.page) || 1
+        const skip = (page-1)*limit
+
+        if(limit > 100){
+            return res.status(400).json({
+                success: false,
+                message: "Limit must be less than 100"
+            })
+        }
+
         interface queryFiltersE {
             email?: string
             firstName?: string
@@ -36,7 +48,10 @@ export const getUsers = async (req: Request, res: Response) => {
                 firstName: true,
                 lastName: true, 
                 email: true, 
-                role: { name: true }}
+                role: { name: true }
+            },
+            take: limit,
+            skip: skip
         })
 
         return res.status(200).json({

@@ -234,7 +234,7 @@ export const updateAppointments = async (req: Request, res: Response) => {
             filterAppointment
         )
 
-        res.status(201).json({
+        return res.status(201).json({
             success: true,
             message: "Appointment updated successfully",
             data: updatedAppointment

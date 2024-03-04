@@ -6,11 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/server.ts",
-    "seed1": "ts-node ./src/database/seeders/seeder_roles.ts",
-    "seed2": "ts-node ./src/database/seeders/seeder_users.ts",
-    "seed3": "ts-node ./src/database/seeders/seeder_services.ts",
-    "seed4": "ts-node ./src/database/seeders/seeder_catalogs.ts",
-    "seed5": "ts-node ./src/database/seeders/seeder_appointments.ts",
+    "seed": "ts-node ./src/database/seeders/seeders.ts",
     "run-migrations": "typeorm-ts-node-commonjs migration:run -d ./src/database/db.ts",
     "revert-migrations": "typeorm-ts-node-commonjs migration:revert -d ./src/database/db.ts"
   },

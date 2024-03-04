@@ -1,7 +1,7 @@
 import { User } from "../../models/User"
 import { AppDataSource } from "../db"
 
-const userSeedDatabase = async() => {
+export const userSeedDatabase = async() => {
     try {
         await AppDataSource.initialize()
         

@@ -9,8 +9,6 @@ import { isSuperAdmin } from './middlewares/isSuperAdmin';
 import { createCatalog, deleteCatalog, getCatalog, updateCatalog } from './controllers/catalogController';
 import { createAppointment, getAppointments, updateAppointments } from './controllers/appointmentController';
 
-
-
 export const app:Application = express()
 
 app.use(express.json());
@@ -52,3 +50,6 @@ app.post("/api/appointments", auth, createAppointment) //done
 app.put("/api/appointments/:id", auth, updateAppointments) //done
 app.get("/api/appointments", auth, getAppointments) //done
 app.get("/api/appointments/:id", auth, getAppointments) //done
+
+//get y delete: id no por body
+//put y post: id por body o por params
