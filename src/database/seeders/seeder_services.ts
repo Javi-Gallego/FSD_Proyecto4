@@ -39,5 +39,3 @@ export const serviceSeedDatabase = async() => {
         await AppDataSource.destroy()
     }
 }
-
-serviceSeedDatabase()

@@ -7,7 +7,7 @@ export const catalogSeedDatabase = async () => {
         
         const Catalog1 = new Catalog()
         Catalog1.tattooName = "No tattoo selected"
-        Catalog1.urlImage = "./img/flames.jpg"
+        Catalog1.urlImage = "./img/no_tattoo.jpg"
         await Catalog1.save()
 
         const Catalog2 = new Catalog()
@@ -69,5 +69,3 @@ export const catalogSeedDatabase = async () => {
         await AppDataSource.destroy()
     }
 }
-
-catalogSeedDatabase()

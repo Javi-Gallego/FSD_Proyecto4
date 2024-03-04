@@ -102,5 +102,3 @@ export const userSeedDatabase = async() => {
         await AppDataSource.destroy()
     }
 }
-
-userSeedDatabase()

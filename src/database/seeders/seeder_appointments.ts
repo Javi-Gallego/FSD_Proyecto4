@@ -190,5 +190,3 @@ export const appointmentSeedDatabase = async () => {
         await AppDataSource.destroy()
     }
 }
-
-appointmentSeedDatabase()

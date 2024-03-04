@@ -17,16 +17,16 @@ export class User extends BaseEntity{
     @Column({ name: "email"})
     email!: string
 
-    @Column({ name: "password_hash"})
+    @Column({ name: "password_hash", select: false})
     passwordHash!: string
 
     @Column({ name: "role_id"})
     roleId!: number
 
-    @Column({ name: "created_at", default: () => "CURRENT_TIMESTAMP"})
+    @Column({ name: "created_at", default: () => "CURRENT_TIMESTAMP", select: false})
     createdAt!: Date
 
-    @Column({ name: "updated_at", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP"})
+    @Column({ name: "updated_at", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP", select: false},)
     updatedAt!: Date
 
     @ManyToOne(() => Role, (role) => role.users)

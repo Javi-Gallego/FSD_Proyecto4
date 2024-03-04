@@ -9,6 +9,8 @@ import { isSuperAdmin } from './middlewares/isSuperAdmin';
 import { createCatalog, deleteCatalog, getCatalog, updateCatalog } from './controllers/catalogController';
 import { createAppointment, getAppointments, updateAppointments } from './controllers/appointmentController';
 
+import Authrouter from './routes/authRouter'
+
 export const app:Application = express()
 
 app.use(express.json());
@@ -25,7 +27,7 @@ app.get("/healthy", (req, res) => {
 //Authentications
 app.post("/api/auth/register", register) //done
 app.post("/api/auth/login", login) //done
-
+// app.use(Authrouter)
 //Users
 app.get("/api/users", auth, isSuperAdmin, getUsers) //done
 app.get("/api/users/profile", auth, profile) //done
