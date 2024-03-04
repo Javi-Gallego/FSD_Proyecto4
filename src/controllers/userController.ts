@@ -27,16 +27,16 @@ export const getUsers = async (req: Request, res: Response) => {
         
         const queryFilters: queryFiltersE = {}
 
-        if (req.query.email) {
+        if (req.body.email) {
             queryFilters.email = req.body.email as string
         }
-        if (req.query.name) {
+        if (req.body.name) {
             queryFilters.firstName = req.body.name as string
         }
-        if (req.query.lastname) {
+        if (req.body.lastname) {
             queryFilters.lastName = req.body.lastname as string
         }
-        if (req.query.role) {
+        if (req.body.role) {
             queryFilters.role = { name: req.body.role as string }
         }
 
