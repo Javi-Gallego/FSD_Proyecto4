@@ -230,26 +230,22 @@ When an endpoint needs authentication you must put the token given to you when y
             body:
         ``` js
             {
-                { 
-                    "serviceName": "email",
-                    "description": "firstname"
-                }
+                "serviceName": "name",
+                "description": "description"    
             }
         ```
-        You must be logged as super_admin to creat a service. The body must have a "serviceName" and a "description" field.
+        You must be logged as super_admin to create a service. The body must have a "serviceName" and a "description" field.
     - UPDATE SERVICES :angel: 
 
-            PUT  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/services
+            PUT  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/services/:id
             body:
         ``` js
             {
-                { 
-                    "name": "email",
-                    "description": "firstname"
-                }
+                "serviceName": "name",
+                "description": "description"
             }
         ```
-        You must be logged as super_admin to creat a service. The body must have a "name" and a "description" field.
+        You must be logged as super_admin to update a service. The body must have a "serviceName" a "description" or both fields. The id of the updated service must be send via parameter in the url.
     - DELETE SERVICE :angel: 
 
             DELETE  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/services
@@ -257,12 +253,87 @@ When an endpoint needs authentication you must put the token given to you when y
         ``` js
             {
                 { 
-                    "name": "email",
-                    "description": "firstname"
+                    "id": 6,
                 }
             }
         ```
-        You must be logged as super_admin to creat a service. The body must have a "name" and a "description" field.
+        You must be logged as super_admin to delete a service. The body must have the id of the service to be deleted
+
+- CATALOG
+    - GET CATALOG :earth_africa:
+
+            GET https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog
+
+        Everybody can see all the tattoos int the catalog of the shop.
+
+    - CREATE TATTOO
+
+            POST  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog
+            body:
+        ``` js
+            {
+                "tattooName": "Rhino",
+                "urlImage": "./img/rhino.jpg"
+            }
+        ```
+        You must be logged as super_admin to create a tattoo. The body must have a "tattooName" and a "urlImage" field.
+    - UPDATE TATTOO :angel: 
+
+            PUT  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog/:id
+            body:
+        ``` js
+            {
+                "tattooName": "Rrrrrhino",
+                "urlImage": "./img/rinrin.jpg"
+            }
+        ```
+        You must be logged as super_admin to update a tattoo. The body must have a "serviceName" a "description" or both fields. The id of the updated tattoo must be send via parameter in the url.
+    - DELETE TATTOO :angel: 
+
+            DELETE  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog/:id
+
+        You must be logged as super_admin to delete a tattoo. The id must be passed as parameter in the url
+
+- APPOINTMENTS
+    - GET APPOINTMENTS :lock:
+
+            GET https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/appointments
+            query examples:
+        ``` js
+            {
+                ?id=5&serviceId=2&artistId=11&catalogId=2
+            }
+        ```
+
+        Authentication needed. If you are a normal user you can only retrieve your appointments. Only appointmets posterior to the actual date are shown. A Filter can be applied as query param and the values that can be checked are id, serviceId, artistId and catalogId, all the fields are optionals.
+
+    - CREATE APPOINTMENT
+    
+            POST  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog
+            body:
+        ``` js
+            {
+                "tattooName": "Rhino",
+                "urlImage": "./img/rhino.jpg"
+            }
+        ```
+        You must be logged as super_admin to create a tattoo. The body must have a "tattooName" and a "urlImage" field.
+    - UPDATE APPOINTMENT :angel: 
+
+            PUT  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog/:id
+            body:
+        ``` js
+            {
+                "tattooName": "Rrrrrhino",
+                "urlImage": "./img/rinrin.jpg"
+            }
+        ```
+        You must be logged as super_admin to update a tattoo. The body must have a "serviceName" a "description" or both fields. The id of the updated tattoo must be send via parameter in the url.
+    - DELETE APPOINTMENT :angel: 
+
+            DELETE  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog/:id
+
+        You must be logged as super_admin to delete a tattoo. The id must be passed as parameter in the url
 </details>
 
 ## Future features

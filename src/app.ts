@@ -9,8 +9,6 @@ import { isSuperAdmin } from './middlewares/isSuperAdmin';
 import { createCatalog, deleteCatalog, getCatalog, updateCatalog } from './controllers/catalogController';
 import { createAppointment, getAppointments, updateAppointments } from './controllers/appointmentController';
 
-import Authrouter from './routes/authRouter'
-
 export const app:Application = express()
 
 app.use(express.json());

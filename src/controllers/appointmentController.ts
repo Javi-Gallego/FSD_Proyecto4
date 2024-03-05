@@ -34,6 +34,13 @@ export const createAppointment = async (req: Request, res: Response) => {
             })
         }
 
+        if( (newAppointment.serviceId === 2 && !newAppointment.catalogId) || (newAppointment.serviceId === 2 && !newAppointment.artistId) ){
+            return res.status(400).json({
+                success: false,
+                message: "Please provide a tattoo image and a tattoo artist for this service"
+            })
+        }
+
         //los servicios 1, 2 y 3 requieren un tatuador, el 4 y 5 no
         if((newAppointment.artistId && newAppointment.serviceId === 4) ||
         (newAppointment.artistId && newAppointment.serviceId === 5)) {
@@ -53,7 +60,7 @@ export const createAppointment = async (req: Request, res: Response) => {
                     lastName: true,
                     email: true,
                     role: { name: true }
-            }
+                }
             })
             if(!artist){
                 return res.status(400).json({
@@ -70,6 +77,27 @@ export const createAppointment = async (req: Request, res: Response) => {
                 }
             }  
         }
+        
+        //Si el usuario selecciona un tatto del catálogo, se busca si existe y si es mayor que 1 (el 1 es posición reservada)
+        if(newAppointment.catalogId === 1) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid tattoo selected"
+            })
+        }
+        
+        if(newAppointment.catalogId) {
+            const image = await Catalog.findOne({
+                where: {id: newAppointment.catalogId}
+            })
+            if(!image){
+                return res.status(400).json({
+                    success: false,
+                    message: "Image not found"
+                })
+            }  
+        }
+        
         //Solo el servicio 2 puede elegir un tatuaje del catalogo
         if(newAppointment.catalogId && newAppointment.serviceId !== 2) {
             return res.status(400).json({
@@ -195,6 +223,34 @@ export const updateAppointments = async (req: Request, res: Response) => {
             })
         }
 
+        //Si se elige el servicio 2, se comprueba que se haya seleccionado un tatuador y una imagen de catálogo
+        //o que ya existan en la cita antes de actualizarse
+        const artistbyId = await User.findOne({
+            where: { id: filterAppointment.artistId },
+            relations: { role: true },
+            select: {
+                id: true,
+                role: { name: true }
+            }
+        })
+        console.log("artistidbyid: " + artistbyId?.role.name)
+        if( ((filterAppointment.serviceId === 1 || filterAppointment.serviceId === 2 || filterAppointment.serviceId === 3) && 
+            (artistbyId?.role.name !== "tattoo_artist" && (!searchApp.artistId  || searchApp.artistId === 3))  )){
+                console.log("artistid BD: " + searchApp.artistId)
+                console.log("artistid body: " + filterAppointment.artistId)
+                return res.status(400).json({
+                    success: false,
+                    message: "Please provide a tattoo artist for this service"
+                })
+        }
+
+        if( ((filterAppointment.serviceId === 2) && (!filterAppointment.catalogId && (!searchApp.catalogId || searchApp.catalogId === 1))) ) {
+            return res.status(400).json({
+                success: false,
+                message: "Please provide a tattoo image for this service"
+            }) 
+        }
+
         //Si hay una imagen y el servicio lo permite, se busca si es una imagen disponible en nuestro catálogo
         if(filterAppointment.catalogId) {
             const catalog = await Catalog.findOne({
@@ -220,14 +276,14 @@ export const updateAppointments = async (req: Request, res: Response) => {
         //para asegurarnos de esto, si se cambia el servicio, se borran los campos de artista y catálogo
         //como no me deja poner a null un campo que ya tiene valor le pongo por defecto 1 en catalogo y 3 en artista
         //son registros creados específicamente para este caso
-        if(filterAppointment.serviceId !== 2){
+        if(filterAppointment.serviceId !== 2 && searchApp.serviceId === 2){
             filterAppointment.catalogId = 1
         }
-        if(filterAppointment.serviceId === 4 || filterAppointment.serviceId === 5){
+        if( (filterAppointment.serviceId === 4 || filterAppointment.serviceId === 5) && 
+        ((searchApp.serviceId === 1 || searchApp.serviceId === 2 || searchApp.serviceId === 3)) ){
             filterAppointment.artistId = 3
         }
-        console.log("catalogid nuevo: " + filterAppointment.catalogId)
-        console.log("artistid nuevo: " + filterAppointment.artistId)
+
         //Si ha pasado los filtros de comprobación, se actualiza la cita
         const updatedAppointment = await Appointment.update(
             { id: parseInt(req.params.id) },
@@ -258,6 +314,7 @@ export const getAppointments = async (req: Request, res: Response) => {
             serviceId?: number
             artistId?: number
             catalogId?: number
+            date?: FindOperator<Date>
         }
 
         const queryFilters: queryFilterI = {}
@@ -287,13 +344,13 @@ export const getAppointments = async (req: Request, res: Response) => {
                 queryFilters.catalogId = Number(req.query.catalogId)
             }
         }
+        // por defecto le añadimos el filtro de fecha para que solo muestre citas posteriores a la fecha actual
+        // el resto de filtros son opcionales y sacará todas las citas si no se le pasa ninguno
+        queryFilters.date = MoreThan(new Date())
 
-        //Si no se ha pasado ningún parámetro por filtro, se pasan todas las citas
-        //El único filtro siempre activo es que sólo se muestran citas pendientes. Posterior a la fecha actual
         const search = await Appointment.find({
             where: [
-                queryFilters,
-                { date : MoreThan(new Date()) }
+                queryFilters
             ],
             select: {
                 id: true,
