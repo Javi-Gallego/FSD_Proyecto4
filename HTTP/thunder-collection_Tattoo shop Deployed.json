@@ -1,0 +1,440 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Tattoo shop Deployed",
+    "dateExported": "2024-03-05T19:27:59.892Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "820c2356-8227-4ffe-905e-128fa47fe01b",
+            "name": "Auth",
+            "containerId": "",
+            "created": "2024-03-04T17:38:56.895Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "a1c5af52-5c4f-4aaf-986e-47736da2cee7",
+            "name": "Users",
+            "containerId": "",
+            "created": "2024-03-04T17:38:56.896Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "4560d790-1b33-4d71-8388-3a78ad00c5ae",
+            "name": "Services",
+            "containerId": "",
+            "created": "2024-03-04T17:38:56.897Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "45f36c36-7f6f-4b8a-aded-418f2eb89405",
+            "name": "Catalog",
+            "containerId": "",
+            "created": "2024-03-04T17:38:56.898Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "fcdea393-f1e3-425b-82e4-edba49118120",
+            "name": "Appointments",
+            "containerId": "",
+            "created": "2024-03-04T17:38:56.899Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "288cbde4-b528-4d87-82f4-688b63c1e88f",
+            "name": "Profile",
+            "containerId": "",
+            "created": "2024-03-04T17:38:56.900Z",
+            "sortNum": 60000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "99d43afb-61f3-418e-a711-f57576a960cb",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "820c2356-8227-4ffe-905e-128fa47fe01b",
+            "name": "Post Register",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/auth/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-04T17:38:56.895Z",
+            "modified": "2024-03-04T18:49:36.866Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"first_name\": \"Alberto\",\n  \"last_name\": \"Martínez\",\n  \"email\": \"alberto@gmail.com\",\n  \"password\": \"123456\"\n}\n\n\n\n\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "117c2cae-b4f0-448d-930e-2dfc8a7c2359",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "820c2356-8227-4ffe-905e-128fa47fe01b",
+            "name": "Post Login",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/auth/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-03-04T17:38:56.896Z",
+            "modified": "2024-03-05T19:21:31.063Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"dani@gmail.com\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "ce17ceea-88dd-4248-b486-6eac431cd0e7",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "a1c5af52-5c4f-4aaf-986e-47736da2cee7",
+            "name": "Get Users",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/users?limit=10&page=2",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-03-04T17:38:56.897Z",
+            "modified": "2024-03-04T21:59:04.960Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "limit",
+                    "value": "10",
+                    "isPath": false
+                },
+                {
+                    "name": "page",
+                    "value": "2",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{ \n\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDk1ODgwNzksImV4cCI6MTcwOTU5NTI3OX0.MPCFoL4ykajhnCeREbfk2KiOpPjFkTjeBBCcWfe1Qt0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "c36cd4a6-ba06-4552-ab98-f5c45febe0e9",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "a1c5af52-5c4f-4aaf-986e-47736da2cee7",
+            "name": "Delete user",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/users",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-03-04T17:38:56.899Z",
+            "modified": "2024-03-04T22:09:11.847Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 13\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDk1ODgwNzksImV4cCI6MTcwOTU5NTI3OX0.MPCFoL4ykajhnCeREbfk2KiOpPjFkTjeBBCcWfe1Qt0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "6342b57a-5886-4ea4-8326-57b63afbe67b",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "4560d790-1b33-4d71-8388-3a78ad00c5ae",
+            "name": "Get All Services",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/services",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-03-04T17:38:56.900Z",
+            "modified": "2024-03-04T22:34:08.149Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "79c08697-0b98-4fcc-9d49-27cd608701ab",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "4560d790-1b33-4d71-8388-3a78ad00c5ae",
+            "name": "Create service",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/services",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-03-04T17:38:56.901Z",
+            "modified": "2024-03-04T23:01:35.161Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"serviceName\": \"Servicio nuevo\",\n  \"description\": \"Descripcion escasa\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDk1OTMyNzksImV4cCI6MTcwOTYwMDQ3OX0.NM18Jpl3XEBlB80i4sCmCaPZ-nADyArMEf1qur9_aP0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "b941ef37-0819-4c7d-8915-3ed1d379347b",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "4560d790-1b33-4d71-8388-3a78ad00c5ae",
+            "name": "Update service",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/services/6",
+            "method": "PUT",
+            "sortNum": 80000,
+            "created": "2024-03-04T17:38:56.902Z",
+            "modified": "2024-03-04T23:17:53.788Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"serviceName\": \"Last change\",\n  \"description\": \"Updated\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDk1OTQyNjAsImV4cCI6MTcwOTYwMTQ2MH0.6c2bE0cI1xDDNLgHxEkQA1EWEUosv3yUNw0hxQGhpbM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "890dfa05-99ed-47d5-8aed-ce86075aba63",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "4560d790-1b33-4d71-8388-3a78ad00c5ae",
+            "name": "Delete service",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/services",
+            "method": "DELETE",
+            "sortNum": 90000,
+            "created": "2024-03-04T17:38:56.903Z",
+            "modified": "2024-03-04T23:21:12.994Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 6\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDk1OTQyNjAsImV4cCI6MTcwOTYwMTQ2MH0.6c2bE0cI1xDDNLgHxEkQA1EWEUosv3yUNw0hxQGhpbM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "301c8312-3ef9-4cc4-bcf6-6fb61b2e8105",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "45f36c36-7f6f-4b8a-aded-418f2eb89405",
+            "name": "Post catalog",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2024-03-04T17:38:56.904Z",
+            "modified": "2024-03-04T23:28:27.104Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"tattooName\": \"Rhino\",\n  \"urlImage\": \"./img/rhino.jpg\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDk1OTQ4MjYsImV4cCI6MTcwOTYwMjAyNn0.1y6TCXFJd-9xiSnerh_Fn7Ahbtg00X3jCWSMGElO7PM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "5cf1fc2d-8919-451a-94d1-8597aa012184",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "45f36c36-7f6f-4b8a-aded-418f2eb89405",
+            "name": "Get catalog",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2024-03-04T17:38:56.905Z",
+            "modified": "2024-03-04T23:25:53.329Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "0715e94a-8dde-4583-ba68-0908f40ebf3e",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "fcdea393-f1e3-425b-82e4-edba49118120",
+            "name": "Create appointments",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/appointments",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2024-03-04T17:38:56.906Z",
+            "modified": "2024-03-05T19:27:35.698Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"serviceId\": 5,\n  \"date\": \"2024-03-26 17:00:00\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksInJvbGVOYW1lIjoidXNlciIsImlhdCI6MTcwOTY2NjUwMCwiZXhwIjoxNzA5NjczNzAwfQ.Yf0x6QA7bXWRQuwpDbLepwZfPLC7XghzPYdtDjza-0U"
+            },
+            "tests": []
+        },
+        {
+            "_id": "c00e421d-134c-4152-8779-a67942610c1c",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "a1c5af52-5c4f-4aaf-986e-47736da2cee7",
+            "name": "Update user role",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/users/13/role",
+            "method": "PUT",
+            "sortNum": 130000,
+            "created": "2024-03-04T17:38:56.907Z",
+            "modified": "2024-03-04T22:00:28.748Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"userRole\": 3\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDk1ODgwNzksImV4cCI6MTcwOTU5NTI3OX0.MPCFoL4ykajhnCeREbfk2KiOpPjFkTjeBBCcWfe1Qt0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "cbbe0a7b-ee81-4725-9f14-d949d0f7521c",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "288cbde4-b528-4d87-82f4-688b63c1e88f",
+            "name": "Get profile",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/users/profile",
+            "method": "GET",
+            "sortNum": 140000,
+            "created": "2024-03-04T17:38:56.908Z",
+            "modified": "2024-03-04T22:12:58.455Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDk1OTAyMjIsImV4cCI6MTcwOTU5NzQyMn0.QaTgv-N4ZZgcugZwZWfqn3wdzm0icoHfU91LUuyOaNQ"
+            },
+            "tests": []
+        },
+        {
+            "_id": "f5cac07a-5b2d-4313-9ba2-b60c16fb429d",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "288cbde4-b528-4d87-82f4-688b63c1e88f",
+            "name": "Update profile",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/users/profile",
+            "method": "PUT",
+            "sortNum": 150000,
+            "created": "2024-03-04T17:38:56.909Z",
+            "modified": "2024-03-04T22:33:04.762Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"Javier\",\n  \"lastName\": \"Gallego\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGVOYW1lIjoidXNlciIsImlhdCI6MTcwOTU5MDU5NiwiZXhwIjoxNzA5NTk3Nzk2fQ.mJooG7Bi6_RLql5kk6Z-3AHp7887qQCFpBjEmVrp6KA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "a581703c-8370-42b6-9b0e-c9ce626b19d8",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "fcdea393-f1e3-425b-82e4-edba49118120",
+            "name": "Get appointments",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/appointments?",
+            "method": "GET",
+            "sortNum": 160000,
+            "created": "2024-03-04T17:38:56.910Z",
+            "modified": "2024-03-05T19:22:08.769Z",
+            "headers": [],
+            "params": [],
+            "reqType": "get",
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksInJvbGVOYW1lIjoidXNlciIsImlhdCI6MTcwOTY2NjUwMCwiZXhwIjoxNzA5NjczNzAwfQ.Yf0x6QA7bXWRQuwpDbLepwZfPLC7XghzPYdtDjza-0U"
+            },
+            "tests": []
+        },
+        {
+            "_id": "73aac9e7-c3b5-4a23-b72b-7ea6cd01a465",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "fcdea393-f1e3-425b-82e4-edba49118120",
+            "name": "Update appointments",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/appointments/6",
+            "method": "PUT",
+            "sortNum": 170000,
+            "created": "2024-03-04T17:38:56.911Z",
+            "modified": "2024-03-05T19:26:35.821Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"serviceId\": 2,\n  \"artistId\": 11,\n  \"catalogId\": 3,\n  \"date\": \"2024-03-17 11:00:00\"\n}",
+                "form": []
+            },
+            "reqType": "put",
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksInJvbGVOYW1lIjoidXNlciIsImlhdCI6MTcwOTY2NjUwMCwiZXhwIjoxNzA5NjczNzAwfQ.Yf0x6QA7bXWRQuwpDbLepwZfPLC7XghzPYdtDjza-0U"
+            },
+            "tests": []
+        },
+        {
+            "_id": "bf96da44-09bc-49a0-b384-79aa6fbaffc4",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "45f36c36-7f6f-4b8a-aded-418f2eb89405",
+            "name": "Delete catalog",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog/12",
+            "method": "DELETE",
+            "sortNum": 180000,
+            "created": "2024-03-04T17:38:56.912Z",
+            "modified": "2024-03-04T23:33:19.755Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDk1OTQ4MjYsImV4cCI6MTcwOTYwMjAyNn0.1y6TCXFJd-9xiSnerh_Fn7Ahbtg00X3jCWSMGElO7PM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "0b512900-4667-4b65-a36e-274050764871",
+            "colId": "2726614a-c368-420c-bfc9-86a819d3d7d3",
+            "containerId": "45f36c36-7f6f-4b8a-aded-418f2eb89405",
+            "name": "Update catalog",
+            "url": "https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog/12",
+            "method": "PUT",
+            "sortNum": 190000,
+            "created": "2024-03-04T17:38:56.913Z",
+            "modified": "2024-03-04T23:31:08.728Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"tattooName\": \"Rrrrrhino\",\n  \"urlImage\": \"./img/rinrin.jpg\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDk1OTQ4MjYsImV4cCI6MTcwOTYwMjAyNn0.1y6TCXFJd-9xiSnerh_Fn7Ahbtg00X3jCWSMGElO7PM"
+            },
+            "tests": []
+        }
+    ]
+}

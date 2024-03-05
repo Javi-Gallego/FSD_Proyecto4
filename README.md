@@ -1,27 +1,27 @@
 # Welcome to my Tattoo Shop backend app
 This is the fourth project in the Full Stack Developer Bootcamp at GeeksHubs
 
-<details>
-  <summary>Content 📝</summary>
+
+  ## Content 📝
   <ol>
-    <li><a href="#goal">Goal</a></li>
     <li><a href="#about-the-project">About the project</a></li>
-    <li><a href="#deploy-🚀">Deploy</a></li>
     <li><a href="#stack">Stack</a></li>
-    <li><a href="#db-diagram">DB diagram</a></li>
+    <li><a href="#deploy-🚀">Deploy</a></li>
     <li><a href="#local-installation">Installation</a></li>
+    <li><a href="#api-information">API information</a></li>
+    <li><a href="#db-diagram">DB diagram</a></li>
+    <li><a href="#db-relations">DB relations</a></li>
     <li><a href="#endpoints">Endpoints</a></li>
+    <li><a href="#problems-solutions">Problems solutions</a></li>
     <li><a href="#future-features">Future features</a></li>
-    <li><a href="#desarrollo">Development</a></li>
+    <li><a href="#development">Development</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
-</details>
 
-## Goal
-This project requires a functional API connected to a MySQL database.
 
 ## About the project
-I decided to create an app web for the appointment managemet of a tattoo studio.
+
+Create a web app to manage appointments of a tattoo studio. The project requires a functional API connected to a MySQL database.
 
 This studio has different services and the users can make appointments to which service they want.
 
@@ -35,15 +35,9 @@ All people, without a login, can see the services and the catalog of the shop.
 
 Tattoo artists can see what appointments have scheduled.
 
-I could not erase fields that are already written. If we update an appointment of a service that has tattoo artist and a tattoo image from the catalog and change that appointment to do a piercing, the obvious thing is to change the service_id and delete the artist_id and tattoo_id but I could not do that. I thought of an internal convention to change the artist_id to one named "worker" that points to no one in special and to a tattoo_id that points to a tattoo named "no tattoo selected".
-
-## Deploy 🚀
-<div align="center">
-    <a href="https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io"><strong>https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io</strong></a>🚀🚀🚀
-</div>
 
 ## Stack
-Tecnologies:
+
 <div align="center">
 <a href="">
     <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
@@ -61,6 +55,9 @@ Tecnologies:
     <img src= "https://img.shields.io/badge/javascipt-EFD81D?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"/>
 </a>
 <a href="">
+<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+</a>
+<a href="">
     <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" alt="JWT" />
 </a>
 <a href="">
@@ -71,25 +68,28 @@ Tecnologies:
 </a>
  </div>
 
+## Deploy 🚀
+<div align="center">
+    <a href="https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io"><strong>https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io</strong></a>🚀🚀🚀
+</div>
 
-## DB diagram
-!['imagen-db'](./img/DB_relations.JPG)
 
 ## Local installation
-1. Clone the repository
+
+1. If you don't have MySQL installed on you computer, you can install Docker and execute the above command on your Powershell to create a MySQL container
+` $ docker run --name nombre-contenedor -p 3311:3306 -e MYSQL_ROOT_PASSWORD=1234 -d mysql `
+2. Clone the repository
 ` $ git clone https://github.com/Javi-Gallego/FSD_Proyecto4.git `
-2. Install dependencies
+3. Install dependencies
 ` $ npm install `
-3. Start Express server
+4. Run server
 ` $ npm run dev `
-4. Execute migrations on DB
+5. Run migrations on DB
 ` $ npm run run-migrations `
-5. Execute seeders
+6. Mock DB with seeders
 ` $ npm run seeds `
 
-
-## Endpoints
-
+## API information
 <details>
 <summary>Work in local</summary>
 The repository has a .env_local_sample. You have to change its name to .env to work properly
@@ -117,9 +117,32 @@ When an endpoint needs authentication you must put the token given to you when y
  For a fast comprehension we will use icons to show what is needed to see the endopoints:
  :angel: You must be logged as super_admin
  :man: You must be logged
- :earth_africa: This endpoint is global and can be viewew by everybody
+ :earth_africa: This endpoint is global and can be viewed by everybody
  :lock: You can enter this endpoint if you are authenticated. If you are a user you can only search, update or retrieve your own things, if you are a super_admin you can change or retrieve all the records of the database.
 </details>
+
+## DB diagram
+!['imagen-db'](./img/DB_relations.JPG)
+
+## DB relations
+    
+    - "Roles" to "Users": One-to-many relationship
+    where:
+      - One role can have many users.
+
+    - "Users" to "Appointments": One-to-many relationship
+    where:
+      - One user can have many appointments.
+
+    - "Services" to "Appointments": One-to-many relationship
+    where:
+      - One service can have many appointments.
+
+    - "Catalogs" to "Appointments": One-to-many relationship
+    where:
+      - One catalog can have many appointments.
+
+## Endpoints
 
 <details>
 <summary>Endpoints</summary>
@@ -311,30 +334,32 @@ When an endpoint needs authentication you must put the token given to you when y
             }
         ```
 
-        Authentication needed. If you are a normal user you can only retrieve your appointments. Only appointmets posterior to the actual date are shown. A Filter can be applied as query param and the values that can be checked are id, serviceId, artistId and catalogId, all the fields are optionals.
+        Authentication needed. If you are a normal user you can only retrieve your appointments. Only appointmets posterior to the actual date are shown. A Filter can be applied as query params and the values that can be checked are id, serviceId, artistId and catalogId, all the fields are optionals.
 
-    - CREATE APPOINTMENT
+    - CREATE APPOINTMENT :man:
     
-            POST  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog
+            POST  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/appointments
             body:
         ``` js
             {
-                "tattooName": "Rhino",
-                "urlImage": "./img/rhino.jpg"
+                "serviceId": 5,
+                "date": "2024-03-26 17:00:00"
             }
         ```
-        You must be logged as super_admin to create a tattoo. The body must have a "tattooName" and a "urlImage" field.
-    - UPDATE APPOINTMENT :angel: 
+        You must be logged to create an appointment. In the body you must send all the fields needed. Only serviceId = 2 has the option of catalogId, and only serviceId 1, 2 and 3 have the option of artistId.
+    - UPDATE APPOINTMENT :lock:
 
-            PUT  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog/:id
+            PUT  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/appointments:id
             body:
         ``` js
             {
-                "tattooName": "Rrrrrhino",
-                "urlImage": "./img/rinrin.jpg"
+                "serviceId": 2,
+                "artistId": 11,
+                "catalogId": 3,
+                "date": "2024-03-17 11:00:00"
             }
         ```
-        You must be logged as super_admin to update a tattoo. The body must have a "serviceName" a "description" or both fields. The id of the updated tattoo must be send via parameter in the url.
+        You must be logged to update an appointment. The id of the appointment must be passed as parameter in the url, in the body you can send all the fields you want to change. Only serviceId = 2 has the option of catalogId, and only serviceId 1, 2 and 3 have the option of artistId. If you are a normal user you can change only your own appointments. If you are logged as super admin, you can change every appointment of the DB.
     - DELETE APPOINTMENT :angel: 
 
             DELETE  https://tattooshopfsdjavier-dev-rkdt.2.ie-1.fl0.io/api/catalog/:id
@@ -342,15 +367,23 @@ When an endpoint needs authentication you must put the token given to you when y
         You must be logged as super_admin to delete a tattoo. The id must be passed as parameter in the url
 </details>
 
-## Future features
-[ ] Tattoo artists can also make and update appointments on their own 
-[ ] Add reviews to the artists based on user experiences
-[ ] Add a rating system to the catalog and filter or order based on this rating
-[ ] Maybe, to buy a piercing you do not need to make an appointment, just go to the shop. So you can see the service but cannot make an appointment with that service.
-[ ] Add piercings images to the catalog
-[ ] Add role for piercing artists if they are different from the tattoo ones, add another role for the artists than can do both.
+## Problems solutions
+I could not erase fields that were already written.
 
-## Desarrollo:
+If we update an appointment of a service that has tattoo artist and a tattoo image from the catalog and change that appointment to do a piercing, the obvious thing is to change the service_id and delete the artist_id and tattoo_id that are no longer needed, but I could not do that.
+
+I thought of an internal convention to change the artist_id to one named "worker" that points to a king of default worker and to a tattoo_id that points to a tattoo named "no tattoo selected".
+
+## Future features
+[ ] Tattoo artists can also make and update appointments on their own.
+[ ] Add reviews to the artists based on user experiences
+[ ] Add a rating system to the catalog and filter or order based on this rating.
+[ ] Maybe, to buy a piercing you do not need to make an appointment, just go to the shop. So you can see the service but cannot make an appointment with that service.
+[ ] Add piercings images to the catalog.
+[ ] Add role for piercing artists if they are different from the tattoo ones, add another role for the artists than can do both.
+[ ] Add a frontend so the users can interact with the API.
+
+## Development:
 
 ``` js
  const developer = "Javier Gallego";
@@ -359,6 +392,8 @@ When an endpoint needs authentication you must put the token given to you when y
 ```  
 
 ## Contact
+<div align="center">
 <a href = "mailto:galgar@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
 <a href="https://www.linkedin.com/in/javier-gallego-dev"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
-<a href="https://github.com/Javi-Gallego" src="https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>
+<a href="https://github.com/Javi-Gallego"><img src="https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>
+</div>

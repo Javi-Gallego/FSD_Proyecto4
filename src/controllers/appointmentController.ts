@@ -2,7 +2,7 @@ import { Request, Response, query } from "express"
 import { Appointment } from "../models/Appointment"
 import { User } from "../models/User"
 import { Catalog } from "../models/Catalog"
-import { FindOperator, Like, MoreThan } from "typeorm"
+import { FindOperator, MoreThan } from "typeorm"
 
 
 export const createAppointment = async (req: Request, res: Response) => {

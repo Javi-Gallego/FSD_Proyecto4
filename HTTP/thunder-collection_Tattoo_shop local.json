@@ -1,0 +1,428 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Tattoo_shop",
+    "dateExported": "2024-03-05T19:28:34.377Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "5ddcc47a-3765-42c0-ade6-3a62db28cfb8",
+            "name": "Auth",
+            "containerId": "",
+            "created": "2024-03-01T09:18:24.580Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "2a7d923d-7fcc-4fc8-9865-644f8dac4f02",
+            "name": "Users",
+            "containerId": "",
+            "created": "2024-03-01T09:18:48.085Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "4603dbf0-c9b6-4bb4-b9ba-2acb1541239e",
+            "name": "Services",
+            "containerId": "",
+            "created": "2024-03-01T09:19:15.696Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "0ee2b496-8620-47f2-9a32-600ad308b678",
+            "name": "Catalog",
+            "containerId": "",
+            "created": "2024-03-01T09:19:23.504Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "c1c8252e-d5d2-4236-bb37-cc516f84134b",
+            "name": "Appointments",
+            "containerId": "",
+            "created": "2024-03-01T09:19:33.797Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "fcdfdd2d-f115-4282-83ac-c5430a99f26f",
+            "name": "Profile",
+            "containerId": "",
+            "created": "2024-03-01T21:28:32.104Z",
+            "sortNum": 60000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "acd78c84-8ef3-44a8-9ce6-75c9c5e8ce73",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "5ddcc47a-3765-42c0-ade6-3a62db28cfb8",
+            "name": "Post Register",
+            "url": "http://localhost:4000/api/auth/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-01T09:17:48.932Z",
+            "modified": "2024-03-01T21:37:09.196Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"first_name\": \"Alberto\",\n  \"last_name\": \"Martínez\",\n  \"email\": \"alberto@gmail.com\",\n  \"password\": \"123456\"\n}\n\n\n\n\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "caac71af-b8d1-4ac6-acfd-d40f4521e9e7",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "5ddcc47a-3765-42c0-ade6-3a62db28cfb8",
+            "name": "Post Login",
+            "url": "http://localhost:4000/api/auth/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-03-01T09:18:10.507Z",
+            "modified": "2024-03-05T16:10:38.789Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"dani@gmail.com\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "861c0b38-8e95-4f02-884e-4945c268c0ab",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "2a7d923d-7fcc-4fc8-9865-644f8dac4f02",
+            "name": "Get Users",
+            "url": "http://localhost:4000/api/users?limit=10&page=1",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-03-01T09:20:01.280Z",
+            "modified": "2024-03-04T21:33:30.079Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "limit",
+                    "value": "10",
+                    "isPath": false
+                },
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"role\": \"tattoo_artist\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDk1ODcwNTYsImV4cCI6MTcwOTU5NDI1Nn0.U7YmvhDx1MmrmJT8UO1Bak4qr3hZL_w8_RBgqNpUOi0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "0ab1d0b8-07f3-474e-968c-c2d37f2be794",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "2a7d923d-7fcc-4fc8-9865-644f8dac4f02",
+            "name": "Delete user",
+            "url": "http://localhost:4000/api/users",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-03-01T09:20:16.626Z",
+            "modified": "2024-03-01T09:20:16.626Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 5\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkyNDQ1MzYsImV4cCI6MTcwOTI1MTczNn0.gIgEu2q3d7lEfvJ0AiQg4CZg2ObnEEO2eybj5EmQnvM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "7788b8ed-3f52-41c6-9f68-db138fa5ffc1",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "4603dbf0-c9b6-4bb4-b9ba-2acb1541239e",
+            "name": "Get All Services",
+            "url": "http://localhost:4000/api/services",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-03-01T09:20:27.558Z",
+            "modified": "2024-03-01T09:20:27.558Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "dfcf09d3-9dea-444b-9581-f24ef4590ed1",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "4603dbf0-c9b6-4bb4-b9ba-2acb1541239e",
+            "name": "Create service",
+            "url": "http://localhost:4000/api/services",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-03-01T09:20:38.448Z",
+            "modified": "2024-03-01T09:20:38.448Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"serviceName\": \"Venta de piercings y otros artículos\",\n  \"description\": \"Además de nuestros servicios de aplicación, ofrecemos una selección de piercings y otros artículos relacionados con el arte corporal. Los clientes pueden adquirir productos de calidad para complementar su estilo único\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkyNDQ1MzYsImV4cCI6MTcwOTI1MTczNn0.gIgEu2q3d7lEfvJ0AiQg4CZg2ObnEEO2eybj5EmQnvM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "9888d9d3-b527-4170-840b-21cc7dd17756",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "4603dbf0-c9b6-4bb4-b9ba-2acb1541239e",
+            "name": "Update service",
+            "url": "http://localhost:4000/api/services",
+            "method": "PUT",
+            "sortNum": 80000,
+            "created": "2024-03-01T09:20:45.854Z",
+            "modified": "2024-03-01T09:20:45.854Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 8,\n  \"serviceName\": \"Last change\",\n  \"description\": \"Updated\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkyNDQ1MzYsImV4cCI6MTcwOTI1MTczNn0.gIgEu2q3d7lEfvJ0AiQg4CZg2ObnEEO2eybj5EmQnvM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "73fbd62a-5f7c-4990-af3e-c99e93178cbe",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "4603dbf0-c9b6-4bb4-b9ba-2acb1541239e",
+            "name": "Delete service",
+            "url": "http://localhost:4000/api/services",
+            "method": "DELETE",
+            "sortNum": 90000,
+            "created": "2024-03-01T09:20:54.762Z",
+            "modified": "2024-03-01T09:20:54.762Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 9\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkyNDQ1MzYsImV4cCI6MTcwOTI1MTczNn0.gIgEu2q3d7lEfvJ0AiQg4CZg2ObnEEO2eybj5EmQnvM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "bbfaa5bd-4864-406c-ae17-bf29bd61ca4e",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "0ee2b496-8620-47f2-9a32-600ad308b678",
+            "name": "Post catalog",
+            "url": "http://localhost:4000/api/catalog",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2024-03-01T09:21:03.857Z",
+            "modified": "2024-03-01T09:21:03.857Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"tattooName\": \"Flames\",\n  \"urlImage\": \"./img/flames.jpg\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkyNDQ1MzYsImV4cCI6MTcwOTI1MTczNn0.gIgEu2q3d7lEfvJ0AiQg4CZg2ObnEEO2eybj5EmQnvM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "cb7e9ae3-704d-4621-9a04-093e2be53fb2",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "0ee2b496-8620-47f2-9a32-600ad308b678",
+            "name": "Get catalog",
+            "url": "http://localhost:4000/api/catalog",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2024-03-01T09:21:10.637Z",
+            "modified": "2024-03-01T09:21:10.637Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "87130870-9156-40c8-a947-39966c171b9d",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "c1c8252e-d5d2-4236-bb37-cc516f84134b",
+            "name": "Create appointments",
+            "url": "http://localhost:4000/api/appointments",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2024-03-01T09:21:18.142Z",
+            "modified": "2024-03-05T16:03:39.875Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"serviceId\": 2,\n  \"artistId\": 11,\n  \"catalogId\": 10,\n  \"date\": \"2024-03-22 17:00:00\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGVOYW1lIjoidXNlciIsImlhdCI6MTcwOTY1MzcxMSwiZXhwIjoxNzA5NjYwOTExfQ.3c04WJww_PMnbsr4PIR9HJtbKlzsr2jypgHaJzsXJyE"
+            },
+            "tests": []
+        },
+        {
+            "_id": "5c899e0c-9af4-4a6c-a36f-4480e2c36d6c",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "2a7d923d-7fcc-4fc8-9865-644f8dac4f02",
+            "name": "Update user role",
+            "url": "http://localhost:4000/api/users/5/role",
+            "method": "PUT",
+            "sortNum": 130000,
+            "created": "2024-03-01T21:13:39.456Z",
+            "modified": "2024-03-01T21:13:39.456Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"userRole\": 2\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "8b96ccb4-c45d-49e9-8247-70b464b4e5bb",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "fcdfdd2d-f115-4282-83ac-c5430a99f26f",
+            "name": "Get profile",
+            "url": "http://localhost:4000/api/users/profile",
+            "method": "GET",
+            "sortNum": 140000,
+            "created": "2024-03-01T21:30:32.374Z",
+            "modified": "2024-03-01T21:39:14.428Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJyb2xlTmFtZSI6ImFkbWluIiwiaWF0IjoxNzA5MzI5MTI2LCJleHAiOjE3MDkzMzYzMjZ9.cGH7zQ6IfHxVq_09CaLClYArrcmUxbyXt74VL07HbS0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "3bec4a3d-9952-4761-b99c-baa94fcd3a20",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "fcdfdd2d-f115-4282-83ac-c5430a99f26f",
+            "name": "Update profile",
+            "url": "http://localhost:4000/api/users/profile",
+            "method": "PUT",
+            "sortNum": 150000,
+            "created": "2024-03-01T21:31:11.548Z",
+            "modified": "2024-03-02T08:04:26.400Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"Alberto\",\n  \"lastName\": \"Martínez\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJyb2xlTmFtZSI6ImFkbWluIiwiaWF0IjoxNzA5MzY0NTM5LCJleHAiOjE3MDkzNzE3Mzl9.zijJdq9WI-kXCm91tV7Gor24scYdB9Sy-6CPMkwOePE"
+            },
+            "tests": []
+        },
+        {
+            "_id": "7a713c15-5a7a-49d5-b149-f4a55158a64b",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "c1c8252e-d5d2-4236-bb37-cc516f84134b",
+            "name": "Get appointments",
+            "url": "http://localhost:4000/api/appointments?",
+            "method": "GET",
+            "sortNum": 160000,
+            "created": "2024-03-02T21:28:29.417Z",
+            "modified": "2024-03-05T15:35:58.636Z",
+            "headers": [],
+            "params": [],
+            "reqType": "get",
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDk2NTI3NzUsImV4cCI6MTcwOTY1OTk3NX0.aBMdTiNWe5CtvSk0Aq2-i6UBdiwO2pHFL6Rhj8kZNZU"
+            },
+            "tests": []
+        },
+        {
+            "_id": "02d3e409-bb1b-4e7b-8394-033d901c7aa1",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "c1c8252e-d5d2-4236-bb37-cc516f84134b",
+            "name": "Update appointments",
+            "url": "http://localhost:4000/api/appointments/6",
+            "method": "PUT",
+            "sortNum": 170000,
+            "created": "2024-03-03T17:58:44.939Z",
+            "modified": "2024-03-05T19:08:54.019Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"serviceId\": 4,\n\n\n  \"date\": \"2024-03-18 11:00:00\"\n}",
+                "form": []
+            },
+            "reqType": "put",
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksInJvbGVOYW1lIjoidXNlciIsImlhdCI6MTcwOTY2NDc3NywiZXhwIjoxNzA5NjcxOTc3fQ.-MElg-XpymLnag_62qjdb4zws8chM_kWqMjf_PIHYDM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "0259e96e-c608-4316-980a-48aff43b20b6",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "0ee2b496-8620-47f2-9a32-600ad308b678",
+            "name": "Delete catalog",
+            "url": "http://localhost:4000/api/catalog/5",
+            "method": "DELETE",
+            "sortNum": 180000,
+            "created": "2024-03-03T21:24:04.719Z",
+            "modified": "2024-03-03T21:24:30.098Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d791444c-5233-4c90-bb17-aa58d5384899",
+            "colId": "a11adbcb-5b88-4643-9f1b-c69cb33d3c5c",
+            "containerId": "0ee2b496-8620-47f2-9a32-600ad308b678",
+            "name": "Update catalog",
+            "url": "http://localhost:4000/api/catalog/11",
+            "method": "PUT",
+            "sortNum": 190000,
+            "created": "2024-03-03T21:26:14.765Z",
+            "modified": "2024-03-03T21:29:00.114Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"tattooName\": \"Dragons\",\n  \"urlImage\": \"./img/dragons.jpg\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
