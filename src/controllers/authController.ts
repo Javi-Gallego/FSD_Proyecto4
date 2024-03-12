@@ -11,7 +11,7 @@ export const register = async (req: Request, res: Response) => {
         const { first_name, last_name, email, password, role_id } = req.body
         
         //validaciones de los datos
-
+        
         if(first_name.length > 255 || last_name.length > 255) {
             return res.status(400).json({
                 success: false,
@@ -69,7 +69,7 @@ export const register = async (req: Request, res: Response) => {
             //roleId: 3 
             //dos opciones de meter el role, dependiendo de si usamos @Column o @JoinColumn
         }).save()
-    
+        console.log(newUser.id)
         return res.status(201).json({
             success: true,
             message: "User registered successfully",
@@ -144,7 +144,8 @@ export const login = async (req: Request, res: Response) => {
         return res.status(200).json({
             success: true,
             message: "User logged successfully",
-            data: token
+            data: user.id,
+            token: token
         })
 
         
