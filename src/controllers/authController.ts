@@ -132,6 +132,7 @@ export const login = async (req: Request, res: Response) => {
         //generamos el token una vez confirmamos que es correcta la contraseña
         const token = jwt.sign(
             {
+                firstName: user.firstName,
                 userId: user.id,
                 roleName: user.role.name
             },

@@ -1,6 +1,6 @@
 
-import 'dotenv/config'
-import express, { Application } from 'express'
+import 'dotenv/config';
+import express, { Application } from 'express';
 import { deleteUser, getUsers, profile, updateProfile, updateUserRole } from './controllers/userController';
 import { login, register } from './controllers/authController';
 import { createServices, deleteService, getServices, updateService } from './controllers/serviceController';
@@ -8,8 +8,11 @@ import { auth } from './middlewares/auth';
 import { isSuperAdmin } from './middlewares/isSuperAdmin';
 import { createCatalog, deleteCatalog, getCatalog, updateCatalog } from './controllers/catalogController';
 import { createAppointment, getAppointments, updateAppointments } from './controllers/appointmentController';
+import cors from 'cors';
 
 export const app:Application = express()
+
+app.use(cors());
 
 app.use(express.json());
 
