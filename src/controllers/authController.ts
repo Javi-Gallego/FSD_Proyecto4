@@ -97,7 +97,8 @@ export const login = async (req: Request, res: Response) => {
             where: { email: email },
             relations: { role: true },
             select: { 
-                id: true, 
+                id: true,
+                firstName: true,
                 passwordHash: true, 
                 email: true, 
                 role: { name: true }}
