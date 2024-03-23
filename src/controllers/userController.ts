@@ -84,6 +84,7 @@ export const profile = async (req: Request, res: Response) => {
                 firstName: true,
                 lastName: true,
                 email: true,
+                profilePhoto: true,
                 role: { name: true }
             }
         })

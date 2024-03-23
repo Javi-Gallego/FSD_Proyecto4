@@ -23,6 +23,9 @@ export class User extends BaseEntity{
     @Column({ name: "role_id"})
     roleId!: number
 
+    @Column({ name: "profile_photo"})
+    profilePhoto!: string
+
     @Column({ name: "created_at", default: () => "CURRENT_TIMESTAMP", select: false})
     createdAt!: Date
 

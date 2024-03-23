@@ -69,7 +69,7 @@ export const register = async (req: Request, res: Response) => {
             //roleId: 3 
             //dos opciones de meter el role, dependiendo de si usamos @Column o @JoinColumn
         }).save()
-        console.log(newUser.id)
+
         return res.status(201).json({
             success: true,
             message: "User registered successfully",
