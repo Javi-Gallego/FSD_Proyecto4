@@ -120,8 +120,16 @@ export const updateProfile = async (req: Request, res: Response) => {
         const newData: updateProfileI = {}
 
         //buscamos el usuario a través de la id que viene del token a ver si existe o ha habido algún error
-        const user = await User.findOneBy({
-            id: userId
+        const user = await User.findOne({
+            where: {id: userId},
+            relations: { role: true },
+            select: { 
+                id: true,
+                firstName: true,
+                lastName: true,
+                passwordHash: true, 
+                email: true, 
+                role: { name: true }}
         })
 
         if (!user) {
@@ -164,8 +172,9 @@ export const updateProfile = async (req: Request, res: Response) => {
 
         //para poder cambiar la contraseña se necesita mandar la contraseña actual además de la nueva
         //se comprueba que la contraseña actual sea correcta
-        if(req.body.currentPass & req.body.newPass){
-            if(!bcrypt.compareSync(req.body.currentPass, user.passwordHash)){
+        if(req.body.currentPass && req.body.newPass){
+            const validPass =  bcrypt.compareSync(req.body.currentPass, user.passwordHash)
+            if(!validPass){
                 return res.status(400).json({
                     success: false,
                     message: "Current password is incorrect"
@@ -187,7 +196,6 @@ export const updateProfile = async (req: Request, res: Response) => {
             id: userId
             },
             newData)
-
         return res.status(201).json({
             success: true,
             message: "User updated successfully",
