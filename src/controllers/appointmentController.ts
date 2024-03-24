@@ -352,6 +352,7 @@ export const getAppointments = async (req: Request, res: Response) => {
             where: [
                 queryFilters
             ],
+            relations: ["user", "artist", "service", "catalog"],
             select: {
                 id: true,
                 userId: true,
