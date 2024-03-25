@@ -360,6 +360,9 @@ export const getAppointments = async (req: Request, res: Response) => {
                 artistId: true,
                 catalogId: true,
                 date: true
+            },
+            order: {
+                date: "ASC"
             }
         })
 
