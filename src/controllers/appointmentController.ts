@@ -391,7 +391,7 @@ export const getAppointments = async (req: Request, res: Response) => {
 export const deleteAppointment = async (req: Request, res: Response) => {
     try {
         const appointmentId = req.params.id
-
+console.log(appointmentId)
         const appointment = await Appointment.findOneBy({
             id: parseInt(appointmentId)
         })

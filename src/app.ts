@@ -53,7 +53,7 @@ app.post("/api/appointments", auth, createAppointment) //done
 app.put("/api/appointments/:id", auth, updateAppointments) //done
 app.get("/api/appointments", auth, getAppointments) //done
 app.get("/api/appointments/:id", auth, getAppointments)
-app.delete("api/appointments/:id", auth, deleteAppointment) //done
+app.delete("/api/appointments/:id", auth, deleteAppointment) //done
 
 //get y delete: id no por body
 //put y post: id por body o por params
