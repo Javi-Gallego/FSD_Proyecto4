@@ -387,3 +387,37 @@ export const getAppointments = async (req: Request, res: Response) => {
         })      
     }
 }
+
+export const deleteAppointment = async (req: Request, res: Response) => {
+    try {
+        const appointmentId = req.body.id
+
+        const appointment = await Appointment.findOneBy({
+            id: parseInt(appointmentId)
+        })
+
+        if (!appointment) {
+            return res.status(404).json({
+                success: false,
+                message: "Appointment not found"
+            })
+        }
+
+        const deletedAppointment = await Appointment.delete({
+            id: parseInt(appointmentId)
+            }
+        )
+
+        return res.status(200).json({
+            success: true,
+            message: "Appointment deleted successfully",
+            data: deletedAppointment
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Appointment can't be deleted",
+            error: error
+        })
+    }
+}
