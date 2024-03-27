@@ -390,7 +390,7 @@ export const getAppointments = async (req: Request, res: Response) => {
 
 export const deleteAppointment = async (req: Request, res: Response) => {
     try {
-        const appointmentId = req.body.id
+        const appointmentId = req.params.id
 
         const appointment = await Appointment.findOneBy({
             id: parseInt(appointmentId)
