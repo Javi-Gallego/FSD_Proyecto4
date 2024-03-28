@@ -250,7 +250,7 @@ export const updateUserRole = async (req: Request, res: Response) => {
 
 export const deleteUser = async (req: Request, res: Response) => {
     try {
-        const userId = req.body.id
+        const userId = req.params.id
 
         const user = await User.findOneBy({
             id: parseInt(userId)
