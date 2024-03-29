@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { User } from "../models/User"
 import bcrypt from "bcrypt"
+import { FindOperator, Like } from "typeorm"
 
 export const getUsers = async (req: Request, res: Response) => {
     try {
@@ -17,27 +18,27 @@ export const getUsers = async (req: Request, res: Response) => {
         }
 
         interface queryFiltersE {
-            email?: string
-            firstName?: string
-            lastName?: string
+            email?: FindOperator<string>
+            firstName?: FindOperator<string>
+            lastName?: FindOperator<string>
             role?: {
-                name: string
+                name: FindOperator<string>
             }
         }
         
         const queryFilters: queryFiltersE = {}
 
         if (req.body.email) {
-            queryFilters.email = req.body.email as string
+            queryFilters.email = Like(`%${req.body.email}%`)
         }
-        if (req.body.name) {
-            queryFilters.firstName = req.body.name as string
+        if (req.body.firstName) {
+            queryFilters.firstName = Like(`%${req.body.firstName}%`)
         }
         if (req.body.lastname) {
-            queryFilters.lastName = req.body.lastname as string
+            queryFilters.lastName = Like(`%${req.body.lastName}%`)
         }
         if (req.body.role) {
-            queryFilters.role = { name: req.body.role as string }
+            queryFilters.role = { name: Like(`%${req.body.role}%`) }
         }
 
         const users = await User.find({
