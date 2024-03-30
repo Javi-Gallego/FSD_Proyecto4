@@ -307,7 +307,6 @@ export const updateAppointments = async (req: Request, res: Response) => {
 
 export const getAppointments = async (req: Request, res: Response) => {
     try {
-        
         interface queryFilterI{
             id?: number
             userId?: number

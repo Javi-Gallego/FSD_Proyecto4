@@ -25,20 +25,20 @@ export const getUsers = async (req: Request, res: Response) => {
                 name: FindOperator<string>
             }
         }
-        
+        console.log("firstName", req.query.firstName)
         const queryFilters: queryFiltersE = {}
 
-        if (req.body.email) {
-            queryFilters.email = Like(`%${req.body.email}%`)
+        if (req.query.email) {
+            queryFilters.email = Like(`%${req.query.email}%`)
         }
-        if (req.body.firstName) {
-            queryFilters.firstName = Like(`%${req.body.firstName}%`)
+        if (req.query.firstName) {
+            queryFilters.firstName = Like(`%${req.query.firstName}%`)
         }
-        if (req.body.lastname) {
-            queryFilters.lastName = Like(`%${req.body.lastName}%`)
+        if (req.query.lastname) {
+            queryFilters.lastName = Like(`%${req.query.lastName}%`)
         }
-        if (req.body.role) {
-            queryFilters.role = { name: Like(`%${req.body.role}%`) }
+        if (req.query.role) {
+            queryFilters.role = { name: Like(`%${req.query.role}%`) }
         }
 
         const users = await User.find({
