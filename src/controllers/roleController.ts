@@ -9,6 +9,7 @@ export const getRoles = async (req: Request, res: Response) => {
                 name: Not(In(["super_admin", "worker"]))
             },
             select: {
+                id: true,
                 name: true,
             }
         })
