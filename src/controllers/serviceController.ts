@@ -5,6 +5,7 @@ export const getServices = async (req: Request, res: Response) => {
     try {
         const SERVICES = await Service.find({
             select: {
+                id: true,
                 serviceName: true,
                 description: true,
             }
