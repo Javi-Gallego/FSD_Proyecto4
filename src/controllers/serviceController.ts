@@ -27,6 +27,7 @@ export const getServices = async (req: Request, res: Response) => {
 
 export const createServices = async (req: Request, res: Response) => {
     try {
+        console.log("hola")
         const { serviceName, description } = req.body
 
         const newService = await Service.create({
