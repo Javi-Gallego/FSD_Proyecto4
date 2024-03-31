@@ -102,7 +102,7 @@ export const updateService = async (req: Request, res: Response) => {
 
 export const deleteService = async (req: Request, res: Response) => {
     try {
-        const serviceId = req.body.id
+        const serviceId = req.params.id
 
         const service = await Service.findOneBy({
             id: parseInt(serviceId)

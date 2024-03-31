@@ -41,7 +41,7 @@ app.put("/api/users/:id/role", auth, isSuperAdmin, updateUserRole) //done
 app.get("/api/services", getServices) // done
 app.post("/api/services", auth, isSuperAdmin, createServices) // done
 app.put("/api/services/:id", auth, isSuperAdmin, updateService) // done
-app.delete("/api/services", auth, isSuperAdmin, deleteService) // done
+app.delete("/api/services/:id", auth, isSuperAdmin, deleteService) // done
 
 //Catalog
 app.get("/api/catalog", getCatalog) // done
